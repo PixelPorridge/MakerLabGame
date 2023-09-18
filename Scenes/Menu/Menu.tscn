@@ -1,0 +1,61 @@
+[gd_scene load_steps=2 format=3 uid="uid://bf5op308akq6t"]
+
+[ext_resource type="Script" path="res://Scenes/Menu/Menu.gd" id="1_vfrg0"]
+
+[node name="Menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_vfrg0")
+metadata/_edit_use_anchors_ = true
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 128
+theme_override_constants/margin_top = 128
+theme_override_constants/margin_right = 128
+theme_override_constants/margin_bottom = 128
+metadata/_edit_use_anchors_ = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 1.5
+theme_override_constants/separation = 16
+
+[node name="Train" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "TRAIN"
+
+[node name="Battle" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "BATTLE"
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 160
+theme_override_constants/margin_right = 160
+
+[node name="Options" type="Button" parent="MarginContainer/VBoxContainer/MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "OPTIONS"
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/Train" to="." method="_on_train_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/Battle" to="." method="_on_battle_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/MarginContainer/Options" to="." method="_on_options_pressed"]
