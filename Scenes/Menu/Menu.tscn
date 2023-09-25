@@ -10,7 +10,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_vfrg0")
-metadata/_edit_use_anchors_ = true
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
@@ -19,43 +18,43 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/margin_left = 128
-theme_override_constants/margin_top = 128
-theme_override_constants/margin_right = 128
-theme_override_constants/margin_bottom = 128
-metadata/_edit_use_anchors_ = true
+theme_override_constants/margin_left = 48
+theme_override_constants/margin_top = 48
+theme_override_constants/margin_right = 48
+theme_override_constants/margin_bottom = 48
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
 layout_mode = 2
-theme_override_constants/separation = 16
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
-size_flags_stretch_ratio = 1.5
-theme_override_constants/separation = 16
+size_flags_stretch_ratio = 2.5
 
 [node name="Train" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-text = "TRAIN"
+theme_override_font_sizes/font_size = 16
+text = "Train"
 
 [node name="Battle" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-text = "BATTLE"
+theme_override_font_sizes/font_size = 16
+text = "Battle"
 
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
-theme_override_constants/margin_left = 160
-theme_override_constants/margin_right = 160
+theme_override_constants/margin_left = 56
+theme_override_constants/margin_right = 56
 
-[node name="Options" type="Button" parent="MarginContainer/VBoxContainer/MarginContainer"]
+[node name="ControlPanel" type="Button" parent="MarginContainer/VBoxContainer/MarginContainer"]
 layout_mode = 2
 size_flags_vertical = 3
-text = "OPTIONS"
+theme_override_font_sizes/font_size = 8
+text = "Control Panel"
 
 [connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/Train" to="." method="_on_train_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/Battle" to="." method="_on_battle_pressed"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/MarginContainer/Options" to="." method="_on_options_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/MarginContainer/ControlPanel" to="." method="_on_control_panel_pressed"]
