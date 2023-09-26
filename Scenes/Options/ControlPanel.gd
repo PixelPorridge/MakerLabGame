@@ -109,6 +109,11 @@ func _on_back_pressed():
 	get_tree().change_scene_to_file("res://Scenes/Menu/Menu.tscn")
 
 
+func _on_read_id_pressed():
+	if not request_node.get_http_client_status():
+		request_node.request(Server.URL + "/read-id")
+
+
 func _on_cancel_request_pressed():
 	if request_node.get_http_client_status():
 		request_node.cancel_request()
@@ -116,6 +121,6 @@ func _on_cancel_request_pressed():
 		result_node.add_theme_color_override("font_color", Color.RED)
 
 
-func _on_read_tag_pressed():
+func _on_clear_database_pressed():
 	if not request_node.get_http_client_status():
-		request_node.request(Server.URL + "/read-tag")
+		request_node.request(Server.URL + "/clear-database")
