@@ -1,0 +1,90 @@
+[gd_scene load_steps=8 format=3 uid="uid://vrkc2bte8s5b"]
+
+[ext_resource type="PackedScene" uid="uid://flnyavqm536t" path="res://Entities/Champions/Champion.tscn" id="1_5a41j"]
+[ext_resource type="Script" path="res://Entities/Champions/Wizard/Wizard.gd" id="2_67krw"]
+
+[sub_resource type="Animation" id="Animation_dcsty"]
+resource_name = "idle"
+loop_mode = 1
+step = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [4]
+}
+
+[sub_resource type="Animation" id="Animation_abqqd"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [4]
+}
+
+[sub_resource type="Animation" id="Animation_othir"]
+resource_name = "move"
+loop_mode = 1
+step = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [5, 4]
+}
+
+[sub_resource type="Animation" id="Animation_o6t0x"]
+resource_name = "attack"
+loop_mode = 1
+step = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [6, 4]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_fleuf"]
+_data = {
+"RESET": SubResource("Animation_abqqd"),
+"attack": SubResource("Animation_o6t0x"),
+"idle": SubResource("Animation_dcsty"),
+"move": SubResource("Animation_othir")
+}
+
+[node name="Wizard" node_paths=PackedStringArray("animation") instance=ExtResource("1_5a41j")]
+script = ExtResource("2_67krw")
+animation = NodePath("Animation")
+
+[node name="Sprite" parent="." index="1"]
+frame = 4
+
+[node name="Animation" type="AnimationPlayer" parent="." index="3"]
+libraries = {
+"": SubResource("AnimationLibrary_fleuf")
+}

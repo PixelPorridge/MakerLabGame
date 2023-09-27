@@ -4,7 +4,7 @@ const ID = "_id"
 const CHAMPION = "champion"
 
 const LEVEL = "level"
-const EXP = "exp"
+const EXPERIENCE = "experience"
 
 const STRENGTH = "strength"
 const DEFENCE = "defence"
@@ -56,16 +56,30 @@ const CHAMPION_STATS = {
 	}
 }
 
-func get_defaults(champion: int) -> Dictionary:
-	return {
-		ID: null,
-		CHAMPION: champion,
-		LEVEL: 1,
-		EXP: 0,
-		STRENGTH: CHAMPION_STATS[champion][STRENGTH],
-		DEFENCE: CHAMPION_STATS[champion][DEFENCE],
-		SPEED: CHAMPION_STATS[champion][SPEED],
-		DEXTERITY: CHAMPION_STATS[champion][DEXTERITY],
-		VITALITY: CHAMPION_STATS[champion][VITALITY],
-		WISDOM: CHAMPION_STATS[champion][WISDOM]
-	}
+func get_defaults(champion: int = -1) -> Dictionary:
+	if champion == -1:
+		return {
+			ID: null,
+			CHAMPION: null,
+			LEVEL: 1,
+			EXPERIENCE: 0,
+			STRENGTH: 1,
+			DEFENCE: 1,
+			SPEED: 1,
+			DEXTERITY: 1,
+			VITALITY: 1,
+			WISDOM: 1,
+		}
+	else:
+		return {
+			ID: null,
+			CHAMPION: champion,
+			LEVEL: 1,
+			EXPERIENCE: 0,
+			STRENGTH: CHAMPION_STATS[champion][STRENGTH],
+			DEFENCE: CHAMPION_STATS[champion][DEFENCE],
+			SPEED: CHAMPION_STATS[champion][SPEED],
+			DEXTERITY: CHAMPION_STATS[champion][DEXTERITY],
+			VITALITY: CHAMPION_STATS[champion][VITALITY],
+			WISDOM: CHAMPION_STATS[champion][WISDOM],
+		}

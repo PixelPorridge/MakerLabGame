@@ -1,6 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://dql0o85rr07gp"]
+[gd_scene load_steps=4 format=3 uid="uid://dql0o85rr07gp"]
 
 [ext_resource type="Script" path="res://Scenes/Options/ControlPanel.gd" id="1_d14fi"]
+[ext_resource type="PackedScene" uid="uid://digmq4nss2cwh" path="res://Backgrounds/Water.tscn" id="2_fehws"]
+[ext_resource type="FontFile" uid="uid://d3r1wnihdieqm" path="res://Fonts/I-pixel-u.ttf" id="3_4gye1"]
 
 [node name="ControlPanel" type="Control" node_paths=PackedStringArray("request_node", "result_node")]
 layout_mode = 3
@@ -11,7 +13,10 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_d14fi")
 request_node = NodePath("Request")
-result_node = NodePath("MarginContainer/VBoxContainer/Result")
+result_node = NodePath("MarginContainer/PanelContainer/MarginContainer/VBoxContainer/Result")
+
+[node name="Water" parent="." instance=ExtResource("2_fehws")]
+metadata/_edit_lock_ = true
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
@@ -20,146 +25,204 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/margin_left = 8
-theme_override_constants/margin_top = 8
-theme_override_constants/margin_right = 8
-theme_override_constants/margin_bottom = 8
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer"]
 layout_mode = 2
-theme_override_constants/separation = 8
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
-theme_override_constants/separation = 8
+size_flags_stretch_ratio = 6.0
+theme_override_constants/separation = 16
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+theme_override_constants/separation = 16
 
-[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+[node name="Label" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 8
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("3_4gye1")
+theme_override_font_sizes/font_size = 28
 text = "Champions"
 horizontal_alignment = 1
 
-[node name="Knight" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+[node name="Knight" type="Button" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
-theme_override_font_sizes/font_size = 8
-text = "Knight"
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("3_4gye1")
+theme_override_font_sizes/font_size = 20
+text = " Knight"
 alignment = 0
 
-[node name="Wizard" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+[node name="Wizard" type="Button" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
-theme_override_font_sizes/font_size = 8
-text = "Wizard"
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("3_4gye1")
+theme_override_font_sizes/font_size = 20
+text = " Wizard"
 alignment = 0
 
-[node name="Rogue" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+[node name="Rogue" type="Button" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
-theme_override_font_sizes/font_size = 8
-text = "Rogue"
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("3_4gye1")
+theme_override_font_sizes/font_size = 20
+text = " Rogue"
 alignment = 0
 
-[node name="Archer" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+[node name="Archer" type="Button" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
-theme_override_font_sizes/font_size = 8
-text = "Archer"
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("3_4gye1")
+theme_override_font_sizes/font_size = 20
+text = " Archer"
 alignment = 0
 
-[node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+theme_override_constants/separation = 16
 
-[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2"]
+[node name="Label" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 8
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("3_4gye1")
+theme_override_font_sizes/font_size = 28
 text = "Spells"
 horizontal_alignment = 1
 
-[node name="Berserk" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2"]
+[node name="Berserk" type="Button" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2"]
 layout_mode = 2
 size_flags_vertical = 3
-theme_override_font_sizes/font_size = 8
-text = "Berserk"
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("3_4gye1")
+theme_override_font_sizes/font_size = 20
+text = " Berserk"
 alignment = 0
 
-[node name="Fireball" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2"]
+[node name="Fireball" type="Button" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2"]
 layout_mode = 2
 size_flags_vertical = 3
-theme_override_font_sizes/font_size = 8
-text = "Fireball"
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("3_4gye1")
+theme_override_font_sizes/font_size = 20
+text = " Fireball"
 alignment = 0
 
-[node name="Counter" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2"]
+[node name="Counter" type="Button" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2"]
 layout_mode = 2
 size_flags_vertical = 3
-theme_override_font_sizes/font_size = 8
-text = "Counter"
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("3_4gye1")
+theme_override_font_sizes/font_size = 20
+text = " Counter"
 alignment = 0
 
-[node name="Split" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2"]
+[node name="Split" type="Button" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2"]
 layout_mode = 2
 size_flags_vertical = 3
-theme_override_font_sizes/font_size = 8
-text = "Split"
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("3_4gye1")
+theme_override_font_sizes/font_size = 20
+text = " Split"
 alignment = 0
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+[node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
-theme_override_constants/separation = 4
+theme_override_constants/separation = 16
 
-[node name="Back" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer2"]
+[node name="Back" type="Button" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-theme_override_font_sizes/font_size = 8
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("3_4gye1")
+theme_override_font_sizes/font_size = 20
 text = "Back"
 
-[node name="ReadID" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer2"]
+[node name="ReadID" type="Button" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-theme_override_font_sizes/font_size = 8
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("3_4gye1")
+theme_override_font_sizes/font_size = 20
 text = "Read ID"
 
-[node name="CancelRequest" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer2"]
+[node name="CancelRequest" type="Button" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2"]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_font_sizes/font_size = 8
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("3_4gye1")
+theme_override_font_sizes/font_size = 20
 text = "Cancel Request"
 
-[node name="ClearDatabase" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer2"]
+[node name="ClearDatabase" type="Button" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-theme_override_font_sizes/font_size = 8
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("3_4gye1")
+theme_override_font_sizes/font_size = 20
 text = "Clear Database"
 
-[node name="Result" type="Label" parent="MarginContainer/VBoxContainer"]
+[node name="Result" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 8
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("3_4gye1")
+theme_override_font_sizes/font_size = 20
 text = "..."
 horizontal_alignment = 1
 
 [node name="Request" type="HTTPRequest" parent="."]
 timeout = 10.0
 
-[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/Knight" to="." method="_on_knight_pressed"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/Wizard" to="." method="_on_wizard_pressed"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/Rogue" to="." method="_on_rogue_pressed"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/Archer" to="." method="_on_archer_pressed"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2/Berserk" to="." method="_on_berserk_pressed"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2/Fireball" to="." method="_on_fireball_pressed"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2/Counter" to="." method="_on_counter_pressed"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2/Split" to="." method="_on_split_pressed"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer2/Back" to="." method="_on_back_pressed"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer2/ReadID" to="." method="_on_read_id_pressed"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer2/CancelRequest" to="." method="_on_cancel_request_pressed"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer2/ClearDatabase" to="." method="_on_clear_database_pressed"]
+[connection signal="pressed" from="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/Knight" to="." method="_on_knight_pressed"]
+[connection signal="pressed" from="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/Wizard" to="." method="_on_wizard_pressed"]
+[connection signal="pressed" from="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/Rogue" to="." method="_on_rogue_pressed"]
+[connection signal="pressed" from="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/Archer" to="." method="_on_archer_pressed"]
+[connection signal="pressed" from="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2/Berserk" to="." method="_on_berserk_pressed"]
+[connection signal="pressed" from="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2/Fireball" to="." method="_on_fireball_pressed"]
+[connection signal="pressed" from="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2/Counter" to="." method="_on_counter_pressed"]
+[connection signal="pressed" from="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2/Split" to="." method="_on_split_pressed"]
+[connection signal="pressed" from="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2/Back" to="." method="_on_back_pressed"]
+[connection signal="pressed" from="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2/ReadID" to="." method="_on_read_id_pressed"]
+[connection signal="pressed" from="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2/CancelRequest" to="." method="_on_cancel_request_pressed"]
+[connection signal="pressed" from="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2/ClearDatabase" to="." method="_on_clear_database_pressed"]

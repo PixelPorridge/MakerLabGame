@@ -18,12 +18,12 @@ func _process(_delta):
 		result_node.add_theme_color_override("font_color", Color.WHITE)
 	
 	result_node.text = response
-			
 
 func _on_request_completed(result, _response_code, _headers, body):
 	if result == HTTPRequest.RESULT_SUCCESS:
 		response = body.get_string_from_utf8()
 		result_node.add_theme_color_override("font_color", Color.GREEN)
+
 
 # === Champions ===
 
