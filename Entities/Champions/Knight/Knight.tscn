@@ -1,7 +1,13 @@
-[gd_scene load_steps=8 format=3 uid="uid://j8vcmlpu0fww"]
+[gd_scene load_steps=10 format=3 uid="uid://j8vcmlpu0fww"]
 
 [ext_resource type="PackedScene" uid="uid://flnyavqm536t" path="res://Entities/Champions/Champion.tscn" id="1_qrdtc"]
 [ext_resource type="Script" path="res://Entities/Champions/Knight/Knight.gd" id="2_pd6bi"]
+[ext_resource type="Shader" path="res://Shaders/Outline.gdshader" id="3_w1l7p"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_oj0cr"]
+shader = ExtResource("3_w1l7p")
+shader_parameter/line_color = Color(1, 1, 1, 1)
+shader_parameter/line_thickness = 2.0
 
 [sub_resource type="Animation" id="Animation_anc8m"]
 length = 0.001
@@ -80,6 +86,9 @@ _data = {
 [node name="Knight" node_paths=PackedStringArray("animation") instance=ExtResource("1_qrdtc")]
 script = ExtResource("2_pd6bi")
 animation = NodePath("Animation")
+
+[node name="Sprite" parent="." index="1"]
+material = SubResource("ShaderMaterial_oj0cr")
 
 [node name="Animation" type="AnimationPlayer" parent="." index="3"]
 libraries = {

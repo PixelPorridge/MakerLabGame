@@ -1,7 +1,13 @@
-[gd_scene load_steps=8 format=3 uid="uid://cvopg66ryhgaw"]
+[gd_scene load_steps=10 format=3 uid="uid://cvopg66ryhgaw"]
 
 [ext_resource type="PackedScene" uid="uid://flnyavqm536t" path="res://Entities/Champions/Champion.tscn" id="1_6bk63"]
 [ext_resource type="Script" path="res://Entities/Champions/Archer/Archer.gd" id="2_gka81"]
+[ext_resource type="Shader" path="res://Shaders/Outline.gdshader" id="3_y35al"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_dkl6b"]
+shader = ExtResource("3_y35al")
+shader_parameter/line_color = Color(1, 1, 1, 1)
+shader_parameter/line_thickness = 2.0
 
 [sub_resource type="Animation" id="Animation_43s0o"]
 length = 0.001
@@ -82,6 +88,7 @@ script = ExtResource("2_gka81")
 animation = NodePath("Animation")
 
 [node name="Sprite" parent="." index="1"]
+material = SubResource("ShaderMaterial_dkl6b")
 frame = 12
 
 [node name="Animation" type="AnimationPlayer" parent="." index="3"]

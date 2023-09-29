@@ -1,7 +1,13 @@
-[gd_scene load_steps=8 format=3 uid="uid://dg7dmshli61f"]
+[gd_scene load_steps=10 format=3 uid="uid://dg7dmshli61f"]
 
 [ext_resource type="PackedScene" uid="uid://flnyavqm536t" path="res://Entities/Champions/Champion.tscn" id="1_xnvj6"]
 [ext_resource type="Script" path="res://Entities/Champions/Rogue/Rogue.gd" id="2_546hb"]
+[ext_resource type="Shader" path="res://Shaders/Outline.gdshader" id="3_oak8l"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_n0hw3"]
+shader = ExtResource("3_oak8l")
+shader_parameter/line_color = Color(1, 1, 1, 1)
+shader_parameter/line_thickness = 2.0
 
 [sub_resource type="Animation" id="Animation_h70eb"]
 length = 0.001
@@ -82,6 +88,7 @@ script = ExtResource("2_546hb")
 animation = NodePath("Animation")
 
 [node name="Sprite" parent="." index="1"]
+material = SubResource("ShaderMaterial_n0hw3")
 frame = 8
 
 [node name="Animation" type="AnimationPlayer" parent="." index="3"]

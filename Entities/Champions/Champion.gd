@@ -1,18 +1,17 @@
 extends CharacterBody2D
 
-@onready var sprite := $Sprite
-@onready var attack_cooldown := $AttackCooldown
-
+@export var sprite : Sprite2D
 @export var animation : AnimationPlayer
+@export var attack_cooldown : Timer
 
-@export var BASE_STRENGTH : int
-@export var BASE_DEFENCE : int
-@export var BASE_SPEED : int
-@export var BASE_DEXTERITY : int
-@export var BASE_VITALITY : int
-@export var BASE_WISDOM : int
+var strength : int
+var defence : int
+var speed : int
+var dexterity : int
+var vitality : int
+var wisdom : int
 
-var data = Champion.get_defaults()
+var health : int
 
 var direction := Vector2.ZERO
 var attacking := false
@@ -38,7 +37,7 @@ func _physics_process(delta):
 		elif direction.x < 0:
 			sprite.flip_h = true
 
-		velocity = direction * BASE_SPEED * data[Champion.SPEED] * delta
+		velocity = direction * speed * delta
 	else:
 		if not attacking:
 			animation.play("idle")
@@ -46,3 +45,13 @@ func _physics_process(delta):
 		velocity = Vector2.ZERO
 
 	move_and_slide()
+
+
+func set_data(data):
+	strength = data[Champion.STRENGTH]
+	defence = data[Champion.DEFENCE]
+	speed = data[Champion.SPEED] * 5000
+	dexterity = data[Champion.DEXTERITY]
+	vitality = data[Champion.VITALITY] * 10
+	wisdom = data[Champion.WISDOM]
+	health = vitality
