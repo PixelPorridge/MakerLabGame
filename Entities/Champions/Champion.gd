@@ -12,7 +12,7 @@ extends CharacterBody2D
 @export var BASE_VITALITY : int
 @export var BASE_WISDOM : int
 
-var stats = Champion.get_defaults()
+var data = Champion.get_defaults()
 
 var direction := Vector2.ZERO
 var attacking := false
@@ -38,7 +38,7 @@ func _physics_process(delta):
 		elif direction.x < 0:
 			sprite.flip_h = true
 
-		velocity = direction * BASE_SPEED * stats[Champion.SPEED] * delta
+		velocity = direction * BASE_SPEED * data[Champion.SPEED] * delta
 	else:
 		if not attacking:
 			animation.play("idle")

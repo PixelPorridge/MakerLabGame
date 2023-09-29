@@ -1,0 +1,276 @@
+[gd_scene load_steps=8 format=3 uid="uid://b23h7wno3hjmv"]
+
+[ext_resource type="Script" path="res://Scenes/ChampionOverview/ChampionOverview.gd" id="1_1usif"]
+[ext_resource type="FontFile" uid="uid://d3r1wnihdieqm" path="res://Fonts/I-pixel-u.ttf" id="1_45031"]
+[ext_resource type="Texture2D" uid="uid://0yjnj0nbpv80" path="res://Sprites/Champions.png" id="1_xeprx"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5kysg"]
+atlas = ExtResource("1_xeprx")
+region = Rect2(0, 0, 96, 64)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5ciwa"]
+atlas = ExtResource("1_xeprx")
+region = Rect2(0, 64, 96, 64)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iamuv"]
+atlas = ExtResource("1_xeprx")
+region = Rect2(0, 128, 96, 64)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xx8rl"]
+atlas = ExtResource("1_xeprx")
+region = Rect2(0, 192, 96, 64)
+filter_clip = true
+
+[node name="ChampionOverview" type="Control" node_paths=PackedStringArray("champion_label", "champion_textures", "strength_label", "defence_label", "speed_label", "dexterity_label", "vitality_label", "wisdom_label")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_1usif")
+champion_label = NodePath("HBoxContainer/PanelContainer/CenterContainer/VBoxContainer/Champion")
+champion_textures = [NodePath("HBoxContainer/PanelContainer/CenterContainer/VBoxContainer/Knight"), NodePath("HBoxContainer/PanelContainer/CenterContainer/VBoxContainer/Wizard"), NodePath("HBoxContainer/PanelContainer/CenterContainer/VBoxContainer/Rogue"), NodePath("HBoxContainer/PanelContainer/CenterContainer/VBoxContainer/Archer")]
+strength_label = NodePath("HBoxContainer/VBoxContainer/Strength/PanelContainer2/Strength")
+defence_label = NodePath("HBoxContainer/VBoxContainer/Defence/PanelContainer2/Defence")
+speed_label = NodePath("HBoxContainer/VBoxContainer/Speed/PanelContainer2/Speed")
+dexterity_label = NodePath("HBoxContainer/VBoxContainer/Dexterity/PanelContainer2/Dexterity")
+vitality_label = NodePath("HBoxContainer/VBoxContainer/Vitality/PanelContainer2/Vitality")
+wisdom_label = NodePath("HBoxContainer/VBoxContainer/Wisdom/PanelContainer2/Wisdom")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 2.0
+theme_override_constants/separation = 8
+
+[node name="Strength" type="HBoxContainer" parent="HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 8
+
+[node name="PanelContainer" type="PanelContainer" parent="HBoxContainer/VBoxContainer/Strength"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 3.0
+
+[node name="Label" type="Label" parent="HBoxContainer/VBoxContainer/Strength/PanelContainer"]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("1_45031")
+text = "Strength"
+horizontal_alignment = 1
+
+[node name="PanelContainer2" type="PanelContainer" parent="HBoxContainer/VBoxContainer/Strength"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Strength" type="Label" parent="HBoxContainer/VBoxContainer/Strength/PanelContainer2"]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("1_45031")
+text = "0"
+horizontal_alignment = 1
+
+[node name="Defence" type="HBoxContainer" parent="HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 8
+
+[node name="PanelContainer" type="PanelContainer" parent="HBoxContainer/VBoxContainer/Defence"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 3.0
+
+[node name="Label" type="Label" parent="HBoxContainer/VBoxContainer/Defence/PanelContainer"]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("1_45031")
+text = "Defence"
+horizontal_alignment = 1
+
+[node name="PanelContainer2" type="PanelContainer" parent="HBoxContainer/VBoxContainer/Defence"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Defence" type="Label" parent="HBoxContainer/VBoxContainer/Defence/PanelContainer2"]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("1_45031")
+text = "0"
+horizontal_alignment = 1
+
+[node name="Speed" type="HBoxContainer" parent="HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 8
+
+[node name="PanelContainer" type="PanelContainer" parent="HBoxContainer/VBoxContainer/Speed"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 3.0
+
+[node name="Label" type="Label" parent="HBoxContainer/VBoxContainer/Speed/PanelContainer"]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("1_45031")
+text = "Speed"
+horizontal_alignment = 1
+
+[node name="PanelContainer2" type="PanelContainer" parent="HBoxContainer/VBoxContainer/Speed"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Speed" type="Label" parent="HBoxContainer/VBoxContainer/Speed/PanelContainer2"]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("1_45031")
+text = "0"
+horizontal_alignment = 1
+
+[node name="Dexterity" type="HBoxContainer" parent="HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 8
+
+[node name="PanelContainer" type="PanelContainer" parent="HBoxContainer/VBoxContainer/Dexterity"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 3.0
+
+[node name="Label" type="Label" parent="HBoxContainer/VBoxContainer/Dexterity/PanelContainer"]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("1_45031")
+text = "Dexterity"
+horizontal_alignment = 1
+
+[node name="PanelContainer2" type="PanelContainer" parent="HBoxContainer/VBoxContainer/Dexterity"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Dexterity" type="Label" parent="HBoxContainer/VBoxContainer/Dexterity/PanelContainer2"]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("1_45031")
+text = "0"
+horizontal_alignment = 1
+
+[node name="Vitality" type="HBoxContainer" parent="HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 8
+
+[node name="PanelContainer" type="PanelContainer" parent="HBoxContainer/VBoxContainer/Vitality"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 3.0
+
+[node name="Label" type="Label" parent="HBoxContainer/VBoxContainer/Vitality/PanelContainer"]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("1_45031")
+text = "Vitality"
+horizontal_alignment = 1
+
+[node name="PanelContainer2" type="PanelContainer" parent="HBoxContainer/VBoxContainer/Vitality"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Vitality" type="Label" parent="HBoxContainer/VBoxContainer/Vitality/PanelContainer2"]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("1_45031")
+text = "0"
+horizontal_alignment = 1
+
+[node name="Wisdom" type="HBoxContainer" parent="HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 8
+
+[node name="PanelContainer" type="PanelContainer" parent="HBoxContainer/VBoxContainer/Wisdom"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 3.0
+
+[node name="Label" type="Label" parent="HBoxContainer/VBoxContainer/Wisdom/PanelContainer"]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("1_45031")
+text = "Wisdom"
+horizontal_alignment = 1
+
+[node name="PanelContainer2" type="PanelContainer" parent="HBoxContainer/VBoxContainer/Wisdom"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Wisdom" type="Label" parent="HBoxContainer/VBoxContainer/Wisdom/PanelContainer2"]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("1_45031")
+text = "0"
+horizontal_alignment = 1
+
+[node name="PanelContainer" type="PanelContainer" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="CenterContainer" type="CenterContainer" parent="HBoxContainer/PanelContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/PanelContainer/CenterContainer"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="Champion" type="Label" parent="HBoxContainer/PanelContainer/CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("1_45031")
+text = "Level 0
+Champion"
+horizontal_alignment = 1
+
+[node name="Knight" type="TextureRect" parent="HBoxContainer/PanelContainer/CenterContainer/VBoxContainer"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_5kysg")
+
+[node name="Wizard" type="TextureRect" parent="HBoxContainer/PanelContainer/CenterContainer/VBoxContainer"]
+visible = false
+layout_mode = 2
+texture = SubResource("AtlasTexture_5ciwa")
+
+[node name="Rogue" type="TextureRect" parent="HBoxContainer/PanelContainer/CenterContainer/VBoxContainer"]
+visible = false
+layout_mode = 2
+texture = SubResource("AtlasTexture_iamuv")
+
+[node name="Archer" type="TextureRect" parent="HBoxContainer/PanelContainer/CenterContainer/VBoxContainer"]
+visible = false
+layout_mode = 2
+texture = SubResource("AtlasTexture_xx8rl")

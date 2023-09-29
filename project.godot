@@ -22,6 +22,7 @@ config/icon="res://Sprites/icon.svg"
 Server="*res://Globals/Server.gd"
 Champion="*res://Globals/Champion.gd"
 Spell="*res://Globals/Spell.gd"
+Player="*res://Globals/Player.gd"
 
 [display]
 

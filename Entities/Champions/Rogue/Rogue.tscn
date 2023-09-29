@@ -3,10 +3,8 @@
 [ext_resource type="PackedScene" uid="uid://flnyavqm536t" path="res://Entities/Champions/Champion.tscn" id="1_xnvj6"]
 [ext_resource type="Script" path="res://Entities/Champions/Rogue/Rogue.gd" id="2_546hb"]
 
-[sub_resource type="Animation" id="Animation_jirmk"]
-resource_name = "idle"
-loop_mode = 1
-step = 0.5
+[sub_resource type="Animation" id="Animation_h70eb"]
+length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -20,8 +18,27 @@ tracks/0/keys = {
 "values": [8]
 }
 
-[sub_resource type="Animation" id="Animation_h70eb"]
-length = 0.001
+[sub_resource type="Animation" id="Animation_8go3v"]
+resource_name = "attack"
+loop_mode = 1
+step = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [10, 11]
+}
+
+[sub_resource type="Animation" id="Animation_jirmk"]
+resource_name = "idle"
+loop_mode = 1
+step = 0.5
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -50,23 +67,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [9, 8]
-}
-
-[sub_resource type="Animation" id="Animation_8go3v"]
-resource_name = "attack"
-loop_mode = 1
-step = 0.5
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [10, 8]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_3j6ra"]

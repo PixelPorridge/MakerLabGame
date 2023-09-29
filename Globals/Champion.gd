@@ -1,6 +1,5 @@
 extends Node
 
-const ID = "_id"
 const CHAMPION = "champion"
 
 const LEVEL = "level"
@@ -18,7 +17,14 @@ const WIZARD = 1
 const ROGUE = 2
 const ARCHER = 3
 
-const CHAMPION_STATS = {
+const NAMES = {
+	KNIGHT: "Knight",
+	WIZARD: "Wizard",
+	ROGUE: "Rogue",
+	ARCHER: "Archer",
+}
+
+const STATS = {
 	KNIGHT: {
 		STRENGTH: 3,
 		DEFENCE: 5,
@@ -59,7 +65,7 @@ const CHAMPION_STATS = {
 func get_defaults(champion: int = -1) -> Dictionary:
 	if champion == -1:
 		return {
-			ID: null,
+			Server.TAG_ID: null,
 			CHAMPION: null,
 			LEVEL: 1,
 			EXPERIENCE: 0,
@@ -72,14 +78,14 @@ func get_defaults(champion: int = -1) -> Dictionary:
 		}
 	else:
 		return {
-			ID: null,
+			Server.TAG_ID: null,
 			CHAMPION: champion,
 			LEVEL: 1,
 			EXPERIENCE: 0,
-			STRENGTH: CHAMPION_STATS[champion][STRENGTH],
-			DEFENCE: CHAMPION_STATS[champion][DEFENCE],
-			SPEED: CHAMPION_STATS[champion][SPEED],
-			DEXTERITY: CHAMPION_STATS[champion][DEXTERITY],
-			VITALITY: CHAMPION_STATS[champion][VITALITY],
-			WISDOM: CHAMPION_STATS[champion][WISDOM],
+			STRENGTH: STATS[champion][STRENGTH],
+			DEFENCE: STATS[champion][DEFENCE],
+			SPEED: STATS[champion][SPEED],
+			DEXTERITY: STATS[champion][DEXTERITY],
+			VITALITY: STATS[champion][VITALITY],
+			WISDOM: STATS[champion][WISDOM],
 		}

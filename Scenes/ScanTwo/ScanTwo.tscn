@@ -1,0 +1,250 @@
+[gd_scene load_steps=6 format=3 uid="uid://bm708ojcbjccj"]
+
+[ext_resource type="Script" path="res://Scenes/ScanTwo/ScanTwo.gd" id="1_k5kxq"]
+[ext_resource type="PackedScene" uid="uid://byofvosd2i7vp" path="res://Backgrounds/Grass.tscn" id="2_wdlmv"]
+[ext_resource type="FontFile" uid="uid://d3r1wnihdieqm" path="res://Fonts/I-pixel-u.ttf" id="3_84nen"]
+[ext_resource type="PackedScene" uid="uid://b23h7wno3hjmv" path="res://Scenes/ChampionOverview/ChampionOverview.tscn" id="5_el8ko"]
+[ext_resource type="PackedScene" uid="uid://dxy62j137y3yg" path="res://Scenes/SpellOverview/SpellOverview.tscn" id="6_t57ku"]
+
+[node name="ScanTwo" type="Control" node_paths=PackedStringArray("request_node", "fight_button", "p1_label", "p2_label", "p1_scan_champion", "p1_scan_spell", "p2_scan_champion", "p2_scan_spell", "p1_champion_overview", "p1_spell_overview", "p2_champion_overview", "p2_spell_overview")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_k5kxq")
+request_node = NodePath("HTTPRequest")
+fight_button = NodePath("MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/Fight")
+p1_label = NodePath("MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/PanelContainer/P1")
+p2_label = NodePath("MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/PanelContainer2/P2")
+p1_scan_champion = NodePath("MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer/PanelContainer/MarginContainer/CenterContainer/P1ScanChampion")
+p1_scan_spell = NodePath("MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer/PanelContainer2/MarginContainer/CenterContainer/P1ScanSpell")
+p2_scan_champion = NodePath("MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer2/PanelContainer/MarginContainer/CenterContainer/P2ScanChampion")
+p2_scan_spell = NodePath("MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer2/PanelContainer2/MarginContainer/CenterContainer/P2ScanSpell")
+p1_champion_overview = NodePath("MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer/PanelContainer/MarginContainer/P1ChampionOverview")
+p1_spell_overview = NodePath("MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer/PanelContainer2/MarginContainer/P1SpellOverview")
+p2_champion_overview = NodePath("MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer2/PanelContainer/MarginContainer/P2ChampionOverview")
+p2_spell_overview = NodePath("MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer2/PanelContainer2/MarginContainer/P2SpellOverview")
+
+[node name="Grass" parent="." instance=ExtResource("2_wdlmv")]
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 16
+
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="P1" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/PanelContainer"]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("3_84nen")
+theme_override_font_sizes/font_size = 32
+text = "Player 1"
+horizontal_alignment = 1
+
+[node name="Menu" type="Button" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.4
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("3_84nen")
+theme_override_font_sizes/font_size = 20
+text = "Menu"
+
+[node name="Fight" type="Button" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.4
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("3_84nen")
+theme_override_font_sizes/font_size = 20
+disabled = true
+text = "Fight!"
+
+[node name="PanelContainer2" type="PanelContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="P2" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/PanelContainer2"]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("3_84nen")
+theme_override_font_sizes/font_size = 32
+text = "Player 2"
+horizontal_alignment = 1
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 6.0
+theme_override_constants/separation = 16
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 16
+
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 3.0
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="CenterContainer" type="CenterContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer/PanelContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="P1ScanChampion" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer/PanelContainer/MarginContainer/CenterContainer"]
+visible = false
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_constants/line_spacing = 0
+theme_override_fonts/font = ExtResource("3_84nen")
+theme_override_font_sizes/font_size = 48
+text = "Scan
+Champion!"
+horizontal_alignment = 1
+
+[node name="P1ChampionOverview" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer/PanelContainer/MarginContainer" instance=ExtResource("5_el8ko")]
+visible = false
+layout_mode = 2
+
+[node name="PanelContainer2" type="PanelContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer/PanelContainer2"]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="CenterContainer" type="CenterContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer/PanelContainer2/MarginContainer"]
+layout_mode = 2
+
+[node name="P1ScanSpell" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer/PanelContainer2/MarginContainer/CenterContainer"]
+visible = false
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("3_84nen")
+theme_override_font_sizes/font_size = 32
+text = "Scan Spell!"
+horizontal_alignment = 1
+
+[node name="P1SpellOverview" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer/PanelContainer2/MarginContainer" instance=ExtResource("6_t57ku")]
+visible = false
+layout_mode = 2
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 16
+
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer2"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 3.0
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer2/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="CenterContainer" type="CenterContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer2/PanelContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="P2ScanChampion" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer2/PanelContainer/MarginContainer/CenterContainer"]
+visible = false
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_constants/line_spacing = 0
+theme_override_fonts/font = ExtResource("3_84nen")
+theme_override_font_sizes/font_size = 48
+text = "Scan
+Champion!"
+horizontal_alignment = 1
+
+[node name="P2ChampionOverview" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer2/PanelContainer/MarginContainer" instance=ExtResource("5_el8ko")]
+visible = false
+layout_mode = 2
+
+[node name="PanelContainer2" type="PanelContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer2"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer2/PanelContainer2"]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="CenterContainer" type="CenterContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer2/PanelContainer2/MarginContainer"]
+layout_mode = 2
+
+[node name="P2ScanSpell" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer2/PanelContainer2/MarginContainer/CenterContainer"]
+visible = false
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("3_84nen")
+theme_override_font_sizes/font_size = 32
+text = "Scan Spell!"
+horizontal_alignment = 1
+
+[node name="P2SpellOverview" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer2/PanelContainer2/MarginContainer" instance=ExtResource("6_t57ku")]
+visible = false
+layout_mode = 2
+
+[node name="HTTPRequest" type="HTTPRequest" parent="."]
+
+[connection signal="pressed" from="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/Menu" to="." method="_on_menu_pressed"]
+[connection signal="pressed" from="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/Fight" to="." method="_on_fight_pressed"]
+[connection signal="request_completed" from="HTTPRequest" to="." method="_on_http_request_completed"]
