@@ -18,6 +18,9 @@ func _ready():
 	p1.set_data(Player.p1_champion)
 	p2.set_data(Player.p2_champion)
 
+	p1.target = p2
+	p2.target = p1
+
 	var viewport_size = get_viewport().content_scale_size
 	p1.position = Vector2(150, viewport_size.y * 0.58)
 	p2.position = Vector2(viewport_size.x - 150, viewport_size.y * 0.58)

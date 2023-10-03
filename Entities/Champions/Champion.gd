@@ -2,7 +2,11 @@ extends CharacterBody2D
 
 @export var sprite : Sprite2D
 @export var animation : AnimationPlayer
+
+@export var move_cooldown : Timer
 @export var attack_cooldown : Timer
+
+var target := CharacterBody2D
 
 var strength : int
 var defence : int
@@ -13,36 +17,23 @@ var wisdom : int
 
 var health : int
 
+var rng = RandomNumberGenerator.new()
 var direction := Vector2.ZERO
-var attacking := false
+
+func _ready():
+	rng.randomize()
+
 
 func _physics_process(delta):
-	direction = Vector2.ZERO
-	attacking = Input.get_action_strength("attack")
 
-	direction.x = Input.get_axis("left", "right")
-	direction.y = Input.get_axis("up", "down")
-
-	direction = direction.normalized()
-
-	if attacking:
-		animation.play("attack")
-
-	if direction != Vector2.ZERO:
-		if not attacking:
-			animation.play("move")
-		
-		if direction.x > 0:
-			sprite.flip_h = false
-		elif direction.x < 0:
-			sprite.flip_h = true
-
-		velocity = direction * speed * delta
+	if target.global_position.x > position.x:
+		sprite.flip_h = false
 	else:
-		if not attacking:
-			animation.play("idle")
+		sprite.flip_h = true
 
-		velocity = Vector2.ZERO
+	animation.play("move")
+
+	velocity = direction * speed * delta
 
 	move_and_slide()
 
@@ -50,8 +41,22 @@ func _physics_process(delta):
 func set_data(data):
 	strength = data[Champion.STRENGTH]
 	defence = data[Champion.DEFENCE]
+
 	speed = data[Champion.SPEED] * 5000
+	animation.speed_scale = data[Champion.SPEED]
+
 	dexterity = data[Champion.DEXTERITY]
-	vitality = data[Champion.VITALITY] * 10
 	wisdom = data[Champion.WISDOM]
+
+	vitality = data[Champion.VITALITY] * 10
 	health = vitality
+
+
+func _on_move_cooldown_timeout():
+	direction.x = rng.randf_range(-1, 1)
+	direction.y = rng.randf_range(-1, 1)
+	direction = direction.normalized()
+
+
+func _on_attack_cooldown_timeout():
+	pass # Replace with function body.

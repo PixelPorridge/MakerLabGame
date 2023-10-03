@@ -17,6 +17,7 @@ size = Vector2(768, 16)
 size = Vector2(16, 336)
 
 [node name="Battle" type="Node2D" node_paths=PackedStringArray("p1_health_bar", "p2_health_bar")]
+y_sort_enabled = true
 script = ExtResource("1_gjpf1")
 p1_health_bar = NodePath("CanvasLayer/HUD/MarginContainer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/P1Health")
 p2_health_bar = NodePath("CanvasLayer/HUD/MarginContainer/HBoxContainer/PanelContainer2/MarginContainer/VBoxContainer/P2Health")
