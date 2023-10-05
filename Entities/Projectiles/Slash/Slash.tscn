@@ -1,0 +1,29 @@
+[gd_scene load_steps=7 format=3 uid="uid://caxi1ntwavgqw"]
+
+[ext_resource type="PackedScene" uid="uid://njev6cpapg64" path="res://Entities/Projectiles/Projectile.tscn" id="1_qde85"]
+[ext_resource type="Script" path="res://Entities/Projectiles/Slash/Slash.gd" id="2_1au0y"]
+[ext_resource type="Texture2D" uid="uid://ch4urjwfwxwfe" path="res://Sprites/Projectiles.png" id="3_hidei"]
+[ext_resource type="Shader" path="res://Shaders/Outline.gdshader" id="3_t2j7h"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_t1xo3"]
+shader = ExtResource("3_t2j7h")
+shader_parameter/line_color = Color(1, 1, 1, 1)
+shader_parameter/line_thickness = 2.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_26ero"]
+size = Vector2(12, 48)
+
+[node name="Slash" node_paths=PackedStringArray("sprite") instance=ExtResource("1_qde85")]
+script = ExtResource("2_1au0y")
+sprite = NodePath("Sprite2D")
+
+[node name="Sprite2D" type="Sprite2D" parent="." index="0"]
+material = SubResource("ShaderMaterial_t1xo3")
+position = Vector2(-8, 0)
+rotation = 0.785398
+texture = ExtResource("3_hidei")
+region_enabled = true
+region_rect = Rect2(0, 0, 64, 64)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="1"]
+shape = SubResource("RectangleShape2D_26ero")

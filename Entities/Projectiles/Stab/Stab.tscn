@@ -1,0 +1,28 @@
+[gd_scene load_steps=7 format=3 uid="uid://bx1etlcjp5icm"]
+
+[ext_resource type="PackedScene" uid="uid://njev6cpapg64" path="res://Entities/Projectiles/Projectile.tscn" id="1_c1ngk"]
+[ext_resource type="Script" path="res://Entities/Projectiles/Stab/Stab.gd" id="2_1e7ei"]
+[ext_resource type="Shader" path="res://Shaders/Outline.gdshader" id="3_jumtc"]
+[ext_resource type="Texture2D" uid="uid://ch4urjwfwxwfe" path="res://Sprites/Projectiles.png" id="3_qe4mn"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2vlew"]
+shader = ExtResource("3_jumtc")
+shader_parameter/line_color = Color(1, 1, 1, 1)
+shader_parameter/line_thickness = 2.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_h75dq"]
+size = Vector2(28, 12)
+
+[node name="Stab" node_paths=PackedStringArray("sprite") instance=ExtResource("1_c1ngk")]
+script = ExtResource("2_1e7ei")
+sprite = NodePath("Sprite2D")
+
+[node name="Sprite2D" type="Sprite2D" parent="." index="0"]
+material = SubResource("ShaderMaterial_2vlew")
+rotation = 0.785398
+texture = ExtResource("3_qe4mn")
+region_enabled = true
+region_rect = Rect2(0, 128, 64, 64)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="1"]
+shape = SubResource("RectangleShape2D_h75dq")

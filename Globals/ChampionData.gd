@@ -62,10 +62,11 @@ const STATS = {
 	}
 }
 
-func get_defaults(champion: int = -1) -> Dictionary:
+
+func get_defaults(champion = -1):
 	if champion == -1:
 		return {
-			Server.TAG_ID: null,
+			ServerData.TAG_ID: null,
 			CHAMPION: null,
 			LEVEL: 1,
 			EXPERIENCE: 0,
@@ -78,7 +79,7 @@ func get_defaults(champion: int = -1) -> Dictionary:
 		}
 	else:
 		return {
-			Server.TAG_ID: null,
+			ServerData.TAG_ID: null,
 			CHAMPION: champion,
 			LEVEL: 1,
 			EXPERIENCE: 0,

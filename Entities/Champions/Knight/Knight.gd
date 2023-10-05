@@ -1,4 +1,7 @@
-extends "res://Entities/Champions/Champion.gd"
+class_name Knight
+extends Champion
 
-func _physics_process(delta):
-	super._physics_process(delta)
+
+func _ready():
+	super._ready()
+	projectile = preload("res://Entities/Projectiles/Slash/Slash.tscn")

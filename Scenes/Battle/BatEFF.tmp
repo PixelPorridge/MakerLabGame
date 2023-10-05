@@ -16,34 +16,32 @@ size = Vector2(768, 16)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kmts5"]
 size = Vector2(16, 336)
 
-[node name="Battle" type="Node2D" node_paths=PackedStringArray("p1_health_bar", "p2_health_bar", "p1_health_label", "p2_health_label")]
+[node name="Battle" type="Node2D" node_paths=PackedStringArray("p1_health_bar", "p2_health_bar")]
 y_sort_enabled = true
 script = ExtResource("1_gjpf1")
 p1_health_bar = NodePath("CanvasLayer/HUD/MarginContainer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/P1Health")
 p2_health_bar = NodePath("CanvasLayer/HUD/MarginContainer/HBoxContainer/PanelContainer2/MarginContainer/VBoxContainer/P2Health")
-p1_health_label = NodePath("CanvasLayer/HUD/MarginContainer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/P1Health/P1HealthLabel")
-p2_health_label = NodePath("CanvasLayer/HUD/MarginContainer/HBoxContainer/PanelContainer2/MarginContainer/VBoxContainer/P2Health/P2HealthLabel")
 
 [node name="Grass" parent="." instance=ExtResource("2_mdr12")]
 
-[node name="Boundary" type="StaticBody2D" parent="."]
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
 collision_mask = 0
 metadata/_edit_group_ = true
 metadata/_edit_lock_ = true
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Boundary"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
 position = Vector2(400, 120)
 shape = SubResource("RectangleShape2D_u7fpa")
 
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="Boundary"]
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D"]
 position = Vector2(784, 288)
 shape = SubResource("RectangleShape2D_sbiur")
 
-[node name="CollisionShape2D3" type="CollisionShape2D" parent="Boundary"]
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="StaticBody2D"]
 position = Vector2(392, 456)
 shape = SubResource("RectangleShape2D_v4qee")
 
-[node name="CollisionShape2D4" type="CollisionShape2D" parent="Boundary"]
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="StaticBody2D"]
 position = Vector2(16, 280)
 shape = SubResource("RectangleShape2D_kmts5")
 
@@ -56,6 +54,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+metadata/_edit_lock_ = true
+metadata/_edit_group_ = true
 
 [node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/HUD"]
 layout_mode = 1
@@ -67,10 +67,11 @@ grow_vertical = 2
 theme_override_constants/margin_left = 16
 theme_override_constants/margin_top = 16
 theme_override_constants/margin_right = 16
-theme_override_constants/margin_bottom = 380
+theme_override_constants/margin_bottom = 16
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/HUD/MarginContainer"]
 layout_mode = 2
+size_flags_vertical = 0
 theme_override_constants/separation = 196
 
 [node name="PanelContainer" type="PanelContainer" parent="CanvasLayer/HUD/MarginContainer/HBoxContainer"]
@@ -96,22 +97,6 @@ theme_override_fonts/font = ExtResource("3_o68ru")
 theme_override_font_sizes/font_size = 24
 step = 1.0
 value = 100.0
-show_percentage = false
-
-[node name="P1HealthLabel" type="Label" parent="CanvasLayer/HUD/MarginContainer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/P1Health"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 10
-theme_override_fonts/font = ExtResource("3_o68ru")
-theme_override_font_sizes/font_size = 20
-text = "50/50"
-horizontal_alignment = 1
-vertical_alignment = 1
 
 [node name="Label" type="Label" parent="CanvasLayer/HUD/MarginContainer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -148,22 +133,6 @@ theme_override_font_sizes/font_size = 24
 step = 1.0
 value = 100.0
 fill_mode = 1
-show_percentage = false
-
-[node name="P2HealthLabel" type="Label" parent="CanvasLayer/HUD/MarginContainer/HBoxContainer/PanelContainer2/MarginContainer/VBoxContainer/P2Health"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 10
-theme_override_fonts/font = ExtResource("3_o68ru")
-theme_override_font_sizes/font_size = 20
-text = "50/50"
-horizontal_alignment = 1
-vertical_alignment = 1
 
 [node name="Label" type="Label" parent="CanvasLayer/HUD/MarginContainer/HBoxContainer/PanelContainer2/MarginContainer/VBoxContainer"]
 layout_mode = 2

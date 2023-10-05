@@ -3,10 +3,11 @@ extends Control
 @export var request_node: HTTPRequest
 @export var result_node: Label
 
-const HEADERS = ["Content-Type: application/json"]
-const POST = HTTPClient.METHOD_POST
+const HEADERS := ["Content-Type: application/json"]
+const POST := HTTPClient.METHOD_POST
 
 var response := "..."
+
 
 func _process(_delta):
 	if request_node.get_http_client_status():
@@ -14,6 +15,7 @@ func _process(_delta):
 		result_node.add_theme_color_override("font_color", Color.WHITE)
 	
 	result_node.text = response
+
 
 func _on_http_request_completed(_result, response_code, _headers, body):
 	if response_code == 200:
@@ -29,34 +31,37 @@ func _on_http_request_completed(_result, response_code, _headers, body):
 # Knight
 func _on_knight_pressed():
 	if not request_node.get_http_client_status():
-		var data = Champion.get_defaults(Champion.KNIGHT)
+		var data = ChampionData.get_defaults(ChampionData.KNIGHT)
 		var json = JSON.stringify(data)
 
-		request_node.request(Server.URL + "/set-champion", HEADERS, POST, json)
+		request_node.request(ServerData.URL + "/set-champion", HEADERS, POST, json)
+
 
 # Wizard
 func _on_wizard_pressed():
 	if not request_node.get_http_client_status():
-		var data = Champion.get_defaults(Champion.WIZARD)
+		var data = ChampionData.get_defaults(ChampionData.WIZARD)
 		var json = JSON.stringify(data)
 
-		request_node.request(Server.URL + "/set-champion", HEADERS, POST, json)
+		request_node.request(ServerData.URL + "/set-champion", HEADERS, POST, json)
+
 
 # Rogue
 func _on_rogue_pressed():
 	if not request_node.get_http_client_status():
-		var data = Champion.get_defaults(Champion.ROGUE)
+		var data = ChampionData.get_defaults(ChampionData.ROGUE)
 		var json = JSON.stringify(data)
 
-		request_node.request(Server.URL + "/set-champion", HEADERS, POST, json)
+		request_node.request(ServerData.URL + "/set-champion", HEADERS, POST, json)
+
 
 # Archer
 func _on_archer_pressed():
 	if not request_node.get_http_client_status():
-		var data = Champion.get_defaults(Champion.ARCHER)
+		var data = ChampionData.get_defaults(ChampionData.ARCHER)
 		var json = JSON.stringify(data)
 
-		request_node.request(Server.URL + "/set-champion", HEADERS, POST, json)
+		request_node.request(ServerData.URL + "/set-champion", HEADERS, POST, json)
 
 
 # === Spells ===
@@ -64,34 +69,37 @@ func _on_archer_pressed():
 # Berserk
 func _on_berserk_pressed():
 	if not request_node.get_http_client_status():
-		var data = Spell.get_defaults(Spell.BERSERK)
+		var data = SpellData.get_defaults(SpellData.BERSERK)
 		var json = JSON.stringify(data)
 
-		request_node.request(Server.URL + "/set-spell", HEADERS, POST, json)
+		request_node.request(ServerData.URL + "/set-spell", HEADERS, POST, json)
+
 
 # Fireball
 func _on_fireball_pressed():
 	if not request_node.get_http_client_status():
-		var data = Spell.get_defaults(Spell.FIREBALL)
+		var data = SpellData.get_defaults(SpellData.FIREBALL)
 		var json = JSON.stringify(data)
 
-		request_node.request(Server.URL + "/set-spell", HEADERS, POST, json)
+		request_node.request(ServerData.URL + "/set-spell", HEADERS, POST, json)
+
 
 # Counter
 func _on_counter_pressed():
 	if not request_node.get_http_client_status():
-		var data = Spell.get_defaults(Spell.COUNTER)
+		var data = SpellData.get_defaults(SpellData.COUNTER)
 		var json = JSON.stringify(data)
 
-		request_node.request(Server.URL + "/set-spell", HEADERS, POST, json)
+		request_node.request(ServerData.URL + "/set-spell", HEADERS, POST, json)
+
 
 # Split
 func _on_split_pressed():
 	if not request_node.get_http_client_status():
-		var data = Spell.get_defaults(Spell.SPLIT)
+		var data = SpellData.get_defaults(SpellData.SPLIT)
 		var json = JSON.stringify(data)
 
-		request_node.request(Server.URL + "/set-spell", HEADERS, POST, json)
+		request_node.request(ServerData.URL + "/set-spell", HEADERS, POST, json)
 
 
 # === Misc ===
@@ -99,10 +107,12 @@ func _on_split_pressed():
 func _on_back_pressed():
 	get_tree().change_scene_to_file("res://Scenes/Menu/Menu.tscn")
 
+
 func _on_read_id_pressed():
 	if not request_node.get_http_client_status():
-		request_node.request(Server.URL + "/read-id")
+		request_node.request(ServerData.URL + "/read-id")
+
 
 func _on_clear_database_pressed():
 	if not request_node.get_http_client_status():
-		request_node.request(Server.URL + "/clear-database")
+		request_node.request(ServerData.URL + "/clear-database")

@@ -14,14 +14,15 @@ const NAMES = {
 	SPLIT: "Split",
 }
 
-func get_defaults(spell: int = -1) -> Dictionary:
+
+func get_defaults(spell = -1):
 	if spell == -1:
 		return {
-			Server.TAG_ID: null,
+			ServerData.TAG_ID: null,
 			SPELL: null,
 		}
 	else:
 		return {
-			Server.TAG_ID: null,
+			ServerData.TAG_ID: null,
 			SPELL: spell,
 		}
