@@ -7,7 +7,7 @@ extends Control
 var data = null
 
 
-func _process(_delta):
+func render():
 	for texture in spell_textures:
 		texture.visible = false
 	

@@ -1,0 +1,365 @@
+[gd_scene load_steps=6 format=3 uid="uid://rgi8pxy0gpww"]
+
+[ext_resource type="Script" path="res://Scenes/ChampionUpgrade/ChampionUpgrade.gd" id="1_mmocx"]
+[ext_resource type="FontFile" uid="uid://d3r1wnihdieqm" path="res://Fonts/I-pixel-u.ttf" id="2_dmtek"]
+[ext_resource type="Texture2D" uid="uid://ch4urjwfwxwfe" path="res://Sprites/Projectiles.png" id="3_4mkte"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ol8iv"]
+atlas = ExtResource("3_4mkte")
+region = Rect2(192, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_61wq0"]
+atlas = ExtResource("3_4mkte")
+region = Rect2(192, 0, 64, 64)
+
+[node name="ChampionUpgrade" type="Control" node_paths=PackedStringArray("strength_label", "defence_label", "speed_label", "dexterity_label", "vitality_label", "wisdom_label", "remove_strength", "remove_defence", "remove_speed", "remove_dexterity", "remove_vitality", "remove_wisdom", "add_strength", "add_defence", "add_speed", "add_dexterity", "add_vitality", "add_wisdom")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_mmocx")
+strength_label = NodePath("HBoxContainer/Stats/Strength/Strength")
+defence_label = NodePath("HBoxContainer/Stats/Defence/Defence")
+speed_label = NodePath("HBoxContainer/Stats/Speed/Speed")
+dexterity_label = NodePath("HBoxContainer/Stats/Dexterity/Dexterity")
+vitality_label = NodePath("HBoxContainer/Stats/Vitality/Vitality")
+wisdom_label = NodePath("HBoxContainer/Stats/Wisdom/Wisdom")
+remove_strength = NodePath("HBoxContainer/Remove/RemoveStrength")
+remove_defence = NodePath("HBoxContainer/Remove/RemoveDefence")
+remove_speed = NodePath("HBoxContainer/Remove/RemoveSpeed")
+remove_dexterity = NodePath("HBoxContainer/Remove/RemoveDexterity")
+remove_vitality = NodePath("HBoxContainer/Remove/RemoveVitality")
+remove_wisdom = NodePath("HBoxContainer/Remove/RemoveWisdom")
+add_strength = NodePath("HBoxContainer/Add/AddStrength")
+add_defence = NodePath("HBoxContainer/Add/AddDefence")
+add_speed = NodePath("HBoxContainer/Add/AddSpeed")
+add_dexterity = NodePath("HBoxContainer/Add/AddDexterity")
+add_vitality = NodePath("HBoxContainer/Add/AddVitality")
+add_wisdom = NodePath("HBoxContainer/Add/AddWisdom")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 4.0
+theme_override_constants/separation = 8
+
+[node name="Labels" type="VBoxContainer" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 4.0
+theme_override_constants/separation = 8
+
+[node name="Strength" type="PanelContainer" parent="HBoxContainer/Labels"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="HBoxContainer/Labels/Strength"]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("2_dmtek")
+text = "Strength"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Defence" type="PanelContainer" parent="HBoxContainer/Labels"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="HBoxContainer/Labels/Defence"]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("2_dmtek")
+text = "Defence"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Speed" type="PanelContainer" parent="HBoxContainer/Labels"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="HBoxContainer/Labels/Speed"]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("2_dmtek")
+text = "Speed"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Dexterity" type="PanelContainer" parent="HBoxContainer/Labels"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="HBoxContainer/Labels/Dexterity"]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("2_dmtek")
+text = "Dexterity"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Vitality" type="PanelContainer" parent="HBoxContainer/Labels"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="HBoxContainer/Labels/Vitality"]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("2_dmtek")
+text = "Vitality"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Wisdom" type="PanelContainer" parent="HBoxContainer/Labels"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="HBoxContainer/Labels/Wisdom"]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("2_dmtek")
+text = "Wisdom"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Stats" type="VBoxContainer" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 1.5
+theme_override_constants/separation = 8
+
+[node name="Strength" type="PanelContainer" parent="HBoxContainer/Stats"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Strength" type="Label" parent="HBoxContainer/Stats/Strength"]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("2_dmtek")
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Defence" type="PanelContainer" parent="HBoxContainer/Stats"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Defence" type="Label" parent="HBoxContainer/Stats/Defence"]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("2_dmtek")
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Speed" type="PanelContainer" parent="HBoxContainer/Stats"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Speed" type="Label" parent="HBoxContainer/Stats/Speed"]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("2_dmtek")
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Dexterity" type="PanelContainer" parent="HBoxContainer/Stats"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Dexterity" type="Label" parent="HBoxContainer/Stats/Dexterity"]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("2_dmtek")
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Vitality" type="PanelContainer" parent="HBoxContainer/Stats"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Vitality" type="Label" parent="HBoxContainer/Stats/Vitality"]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("2_dmtek")
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Wisdom" type="PanelContainer" parent="HBoxContainer/Stats"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Wisdom" type="Label" parent="HBoxContainer/Stats/Wisdom"]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("2_dmtek")
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Remove" type="VBoxContainer" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 8
+
+[node name="RemoveStrength" type="Button" parent="HBoxContainer/Remove"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("2_dmtek")
+icon = SubResource("AtlasTexture_ol8iv")
+icon_alignment = 1
+expand_icon = true
+
+[node name="RemoveDefence" type="Button" parent="HBoxContainer/Remove"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("2_dmtek")
+icon = SubResource("AtlasTexture_ol8iv")
+icon_alignment = 1
+expand_icon = true
+
+[node name="RemoveSpeed" type="Button" parent="HBoxContainer/Remove"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("2_dmtek")
+icon = SubResource("AtlasTexture_ol8iv")
+icon_alignment = 1
+expand_icon = true
+
+[node name="RemoveDexterity" type="Button" parent="HBoxContainer/Remove"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("2_dmtek")
+icon = SubResource("AtlasTexture_ol8iv")
+icon_alignment = 1
+expand_icon = true
+
+[node name="RemoveVitality" type="Button" parent="HBoxContainer/Remove"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("2_dmtek")
+icon = SubResource("AtlasTexture_ol8iv")
+icon_alignment = 1
+expand_icon = true
+
+[node name="RemoveWisdom" type="Button" parent="HBoxContainer/Remove"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("2_dmtek")
+icon = SubResource("AtlasTexture_ol8iv")
+icon_alignment = 1
+expand_icon = true
+
+[node name="Add" type="VBoxContainer" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 8
+
+[node name="AddStrength" type="Button" parent="HBoxContainer/Add"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("2_dmtek")
+icon = SubResource("AtlasTexture_61wq0")
+icon_alignment = 1
+expand_icon = true
+
+[node name="AddDefence" type="Button" parent="HBoxContainer/Add"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("2_dmtek")
+icon = SubResource("AtlasTexture_61wq0")
+icon_alignment = 1
+expand_icon = true
+
+[node name="AddSpeed" type="Button" parent="HBoxContainer/Add"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("2_dmtek")
+icon = SubResource("AtlasTexture_61wq0")
+icon_alignment = 1
+expand_icon = true
+
+[node name="AddDexterity" type="Button" parent="HBoxContainer/Add"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("2_dmtek")
+icon = SubResource("AtlasTexture_61wq0")
+icon_alignment = 1
+expand_icon = true
+
+[node name="AddVitality" type="Button" parent="HBoxContainer/Add"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("2_dmtek")
+icon = SubResource("AtlasTexture_61wq0")
+icon_alignment = 1
+expand_icon = true
+
+[node name="AddWisdom" type="Button" parent="HBoxContainer/Add"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("2_dmtek")
+icon = SubResource("AtlasTexture_61wq0")
+icon_alignment = 1
+expand_icon = true
+
+[node name="HTTPRequest" type="HTTPRequest" parent="."]
+
+[connection signal="pressed" from="HBoxContainer/Remove/RemoveStrength" to="." method="_on_remove_strength_pressed"]
+[connection signal="pressed" from="HBoxContainer/Remove/RemoveDefence" to="." method="_on_remove_defence_pressed"]
+[connection signal="pressed" from="HBoxContainer/Remove/RemoveSpeed" to="." method="_on_remove_speed_pressed"]
+[connection signal="pressed" from="HBoxContainer/Remove/RemoveDexterity" to="." method="_on_remove_dexterity_pressed"]
+[connection signal="pressed" from="HBoxContainer/Remove/RemoveVitality" to="." method="_on_remove_vitality_pressed"]
+[connection signal="pressed" from="HBoxContainer/Remove/RemoveWisdom" to="." method="_on_remove_wisdom_pressed"]
+[connection signal="pressed" from="HBoxContainer/Add/AddStrength" to="." method="_on_add_strength_pressed"]
+[connection signal="pressed" from="HBoxContainer/Add/AddDefence" to="." method="_on_add_defence_pressed"]
+[connection signal="pressed" from="HBoxContainer/Add/AddSpeed" to="." method="_on_add_speed_pressed"]
+[connection signal="pressed" from="HBoxContainer/Add/AddDexterity" to="." method="_on_add_dexterity_pressed"]
+[connection signal="pressed" from="HBoxContainer/Add/AddVitality" to="." method="_on_add_vitality_pressed"]
+[connection signal="pressed" from="HBoxContainer/Add/AddWisdom" to="." method="_on_add_wisdom_pressed"]
+[connection signal="request_completed" from="HTTPRequest" to="." method="_on_http_request_completed"]

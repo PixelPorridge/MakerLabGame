@@ -1,0 +1,315 @@
+[gd_scene load_steps=14 format=3 uid="uid://k32v337ayj2j"]
+
+[ext_resource type="Script" path="res://Scenes/Results/Results.gd" id="1_l1oog"]
+[ext_resource type="PackedScene" uid="uid://byofvosd2i7vp" path="res://Backgrounds/Grass.tscn" id="2_cyadh"]
+[ext_resource type="FontFile" uid="uid://d3r1wnihdieqm" path="res://Fonts/I-pixel-u.ttf" id="3_vk4eq"]
+[ext_resource type="Texture2D" uid="uid://0yjnj0nbpv80" path="res://Sprites/Champions.png" id="4_d1seb"]
+[ext_resource type="PackedScene" uid="uid://rgi8pxy0gpww" path="res://Scenes/ChampionUpgrade/ChampionUpgrade.tscn" id="4_g5tp1"]
+
+[sub_resource type="Shader" id="Shader_bh6j8"]
+code = "shader_type canvas_item;
+
+uniform vec4 line_color : source_color = vec4(1.0);
+uniform float line_thickness : hint_range(0, 10) = 1.0;
+
+const vec2 OFFSETS[8] = {
+	vec2(-1, -1), vec2(-1, 0), vec2(-1, 1), vec2(0, -1), vec2(0, 1), 
+	vec2(1, -1), vec2(1, 0), vec2(1, 1)
+};
+
+void fragment() {
+	vec2 size = TEXTURE_PIXEL_SIZE * line_thickness;
+	float outline = 0.0;
+	
+	for (int i = 0; i < OFFSETS.length(); i++) {
+		outline += texture(TEXTURE, UV + size * OFFSETS[i]).a;
+	}
+	outline = min(outline, 1.0);
+	
+	vec4 color = texture(TEXTURE, UV);
+	COLOR = mix(color, line_color, outline - color.a);
+}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qfr8f"]
+shader = SubResource("Shader_bh6j8")
+shader_parameter/line_color = Color(1, 0.301961, 0.301961, 1)
+shader_parameter/line_thickness = 2.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i3gek"]
+atlas = ExtResource("4_d1seb")
+region = Rect2(0, 0, 112, 64)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q2nay"]
+atlas = ExtResource("4_d1seb")
+region = Rect2(0, 64, 112, 64)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mwmkc"]
+atlas = ExtResource("4_d1seb")
+region = Rect2(0, 128, 112, 64)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_46g73"]
+atlas = ExtResource("4_d1seb")
+region = Rect2(0, 192, 112, 64)
+filter_clip = true
+
+[sub_resource type="Shader" id="Shader_1ympp"]
+code = "shader_type canvas_item;
+
+uniform vec4 line_color : source_color = vec4(1.0);
+uniform float line_thickness : hint_range(0, 10) = 1.0;
+
+const vec2 OFFSETS[8] = {
+	vec2(-1, -1), vec2(-1, 0), vec2(-1, 1), vec2(0, -1), vec2(0, 1), 
+	vec2(1, -1), vec2(1, 0), vec2(1, 1)
+};
+
+void fragment() {
+	vec2 size = TEXTURE_PIXEL_SIZE * line_thickness;
+	float outline = 0.0;
+	
+	for (int i = 0; i < OFFSETS.length(); i++) {
+		outline += texture(TEXTURE, UV + size * OFFSETS[i]).a;
+	}
+	outline = min(outline, 1.0);
+	
+	vec4 color = texture(TEXTURE, UV);
+	COLOR = mix(color, line_color, outline - color.a);
+}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_xooyf"]
+shader = SubResource("Shader_1ympp")
+shader_parameter/line_color = Color(0.301961, 0.301961, 1, 1)
+shader_parameter/line_thickness = 2.0
+
+[node name="Results" type="Control" node_paths=PackedStringArray("winner_label", "p1_champion_upgrade", "p2_champion_upgrade", "p1_champion_textures", "p2_champion_textures")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_l1oog")
+winner_label = NodePath("MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/PanelContainer/Winner")
+p1_champion_upgrade = NodePath("MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer/PanelContainer2/MarginContainer/P1ChampionUpgrade")
+p2_champion_upgrade = NodePath("MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer2/PanelContainer2/MarginContainer/P2ChampionUpgrade")
+p1_champion_textures = [NodePath("MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer/PanelContainer/HBoxContainer/Knight"), NodePath("MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer/PanelContainer/HBoxContainer/Wizard"), NodePath("MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer/PanelContainer/HBoxContainer/Rogue"), NodePath("MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer/PanelContainer/HBoxContainer/Archer")]
+p2_champion_textures = [NodePath("MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer2/PanelContainer/HBoxContainer/Knight"), NodePath("MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer2/PanelContainer/HBoxContainer/Wizard"), NodePath("MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer2/PanelContainer/HBoxContainer/Rogue"), NodePath("MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer2/PanelContainer/HBoxContainer/Archer")]
+
+[node name="Grass" parent="." instance=ExtResource("2_cyadh")]
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 16
+
+[node name="Menu" type="Button" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("3_vk4eq")
+theme_override_font_sizes/font_size = 20
+text = "Menu"
+
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 4.0
+
+[node name="Winner" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/PanelContainer"]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("3_vk4eq")
+theme_override_font_sizes/font_size = 32
+text = "Player 1 Wins!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Rematch" type="Button" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("3_vk4eq")
+theme_override_font_sizes/font_size = 20
+text = "Rematch!"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 6.0
+theme_override_constants/separation = 16
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 16
+
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer/PanelContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Knight" type="TextureRect" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer/PanelContainer/HBoxContainer"]
+material = SubResource("ShaderMaterial_qfr8f")
+layout_mode = 2
+texture = SubResource("AtlasTexture_i3gek")
+expand_mode = 3
+
+[node name="Wizard" type="TextureRect" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer/PanelContainer/HBoxContainer"]
+visible = false
+material = SubResource("ShaderMaterial_qfr8f")
+layout_mode = 2
+texture = SubResource("AtlasTexture_q2nay")
+expand_mode = 3
+
+[node name="Rogue" type="TextureRect" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer/PanelContainer/HBoxContainer"]
+visible = false
+material = SubResource("ShaderMaterial_qfr8f")
+layout_mode = 2
+texture = SubResource("AtlasTexture_mwmkc")
+expand_mode = 3
+
+[node name="Archer" type="TextureRect" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer/PanelContainer/HBoxContainer"]
+visible = false
+material = SubResource("ShaderMaterial_qfr8f")
+layout_mode = 2
+texture = SubResource("AtlasTexture_46g73")
+expand_mode = 3
+
+[node name="Label" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer/PanelContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(1, 0.301961, 0.301961, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("3_vk4eq")
+theme_override_font_sizes/font_size = 24
+text = "Player 1 Upgrade"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PanelContainer2" type="PanelContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 5.0
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer/PanelContainer2"]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="P1ChampionUpgrade" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer/PanelContainer2/MarginContainer" instance=ExtResource("4_g5tp1")]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 16
+
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer2"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer2/PanelContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Knight" type="TextureRect" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer2/PanelContainer/HBoxContainer"]
+visible = false
+material = SubResource("ShaderMaterial_xooyf")
+layout_mode = 2
+texture = SubResource("AtlasTexture_i3gek")
+expand_mode = 3
+
+[node name="Wizard" type="TextureRect" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer2/PanelContainer/HBoxContainer"]
+material = SubResource("ShaderMaterial_xooyf")
+layout_mode = 2
+texture = SubResource("AtlasTexture_q2nay")
+expand_mode = 3
+
+[node name="Rogue" type="TextureRect" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer2/PanelContainer/HBoxContainer"]
+visible = false
+material = SubResource("ShaderMaterial_xooyf")
+layout_mode = 2
+texture = SubResource("AtlasTexture_mwmkc")
+expand_mode = 3
+
+[node name="Archer" type="TextureRect" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer2/PanelContainer/HBoxContainer"]
+visible = false
+material = SubResource("ShaderMaterial_xooyf")
+layout_mode = 2
+texture = SubResource("AtlasTexture_46g73")
+expand_mode = 3
+
+[node name="Label" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer2/PanelContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.301961, 0.301961, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("3_vk4eq")
+theme_override_font_sizes/font_size = 24
+text = "Player 2 Upgrade"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PanelContainer2" type="PanelContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 5.0
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer2/PanelContainer2"]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="P2ChampionUpgrade" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer2/PanelContainer2/MarginContainer" instance=ExtResource("4_g5tp1")]
+layout_mode = 2
+size_flags_vertical = 3
+
+[connection signal="pressed" from="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/Menu" to="." method="_on_menu_pressed"]
+[connection signal="pressed" from="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/Rematch" to="." method="_on_rematch_pressed"]

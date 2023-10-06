@@ -1,6 +1,10 @@
 extends Node
 
+var p1_colour := Color(1, 0.302, 0.302)
+var	p2_colour := Color(0.302, 0.302, 1)
+var yellow := Color(1, 0.918, 0.302)
 
+"""
 # === Player 1 ===
 
 var p1_champion = {
@@ -41,9 +45,17 @@ var p2_spell = {
 	ServerData.TAG_ID: null,
 	SpellData.SPELL: null,
 }
-
-
 """
+
+# === Results ===
+
+var winner: int
+var loser: int
+
+var winner_champion
+var loser_champion
+
+
 # === Player 1 ===
 
 var p1_champion = {
@@ -84,4 +96,10 @@ var p2_spell = {
 	ServerData.TAG_ID: "04:5E:C3:FA:3F:74:80",
 	SpellData.SPELL: 1,
 }
-"""
+
+
+func reset():
+	p1_champion = ChampionData.get_defaults()
+	p1_spell = SpellData.get_defaults()
+	p2_champion = ChampionData.get_defaults()
+	p2_spell = SpellData.get_defaults()

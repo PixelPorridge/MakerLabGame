@@ -1,27 +1,57 @@
-[gd_scene load_steps=8 format=3 uid="uid://b23h7wno3hjmv"]
+[gd_scene load_steps=10 format=3 uid="uid://b23h7wno3hjmv"]
 
 [ext_resource type="Script" path="res://Scenes/ChampionOverview/ChampionOverview.gd" id="1_1usif"]
 [ext_resource type="FontFile" uid="uid://d3r1wnihdieqm" path="res://Fonts/I-pixel-u.ttf" id="1_45031"]
 [ext_resource type="Texture2D" uid="uid://0yjnj0nbpv80" path="res://Sprites/Champions.png" id="1_xeprx"]
 
+[sub_resource type="Shader" id="Shader_6wftc"]
+code = "shader_type canvas_item;
+
+uniform vec4 line_color : source_color = vec4(1.0);
+uniform float line_thickness : hint_range(0, 10) = 1.0;
+
+const vec2 OFFSETS[8] = {
+	vec2(-1, -1), vec2(-1, 0), vec2(-1, 1), vec2(0, -1), vec2(0, 1), 
+	vec2(1, -1), vec2(1, 0), vec2(1, 1)
+};
+
+void fragment() {
+	vec2 size = TEXTURE_PIXEL_SIZE * line_thickness;
+	float outline = 0.0;
+	
+	for (int i = 0; i < OFFSETS.length(); i++) {
+		outline += texture(TEXTURE, UV + size * OFFSETS[i]).a;
+	}
+	outline = min(outline, 1.0);
+	
+	vec4 color = texture(TEXTURE, UV);
+	COLOR = mix(color, line_color, outline - color.a);
+}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_465gi"]
+shader = SubResource("Shader_6wftc")
+shader_parameter/line_color = Color(1, 1, 1, 1)
+shader_parameter/line_thickness = 2.0
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_5kysg"]
 atlas = ExtResource("1_xeprx")
-region = Rect2(0, 0, 96, 64)
+region = Rect2(0, 0, 112, 64)
 filter_clip = true
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5ciwa"]
 atlas = ExtResource("1_xeprx")
-region = Rect2(0, 64, 96, 64)
+region = Rect2(0, 64, 112, 64)
 filter_clip = true
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_iamuv"]
 atlas = ExtResource("1_xeprx")
-region = Rect2(0, 128, 96, 64)
+region = Rect2(0, 128, 112, 64)
 filter_clip = true
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_xx8rl"]
 atlas = ExtResource("1_xeprx")
-region = Rect2(0, 192, 96, 64)
+region = Rect2(0, 192, 112, 64)
 filter_clip = true
 
 [node name="ChampionOverview" type="Control" node_paths=PackedStringArray("champion_label", "champion_textures", "strength_label", "defence_label", "speed_label", "dexterity_label", "vitality_label", "wisdom_label")]
@@ -257,20 +287,21 @@ Champion"
 horizontal_alignment = 1
 
 [node name="Knight" type="TextureRect" parent="HBoxContainer/PanelContainer/CenterContainer/VBoxContainer"]
+material = SubResource("ShaderMaterial_465gi")
 layout_mode = 2
 texture = SubResource("AtlasTexture_5kysg")
 
 [node name="Wizard" type="TextureRect" parent="HBoxContainer/PanelContainer/CenterContainer/VBoxContainer"]
-visible = false
+material = SubResource("ShaderMaterial_465gi")
 layout_mode = 2
 texture = SubResource("AtlasTexture_5ciwa")
 
 [node name="Rogue" type="TextureRect" parent="HBoxContainer/PanelContainer/CenterContainer/VBoxContainer"]
-visible = false
+material = SubResource("ShaderMaterial_465gi")
 layout_mode = 2
 texture = SubResource("AtlasTexture_iamuv")
 
 [node name="Archer" type="TextureRect" parent="HBoxContainer/PanelContainer/CenterContainer/VBoxContainer"]
-visible = false
+material = SubResource("ShaderMaterial_465gi")
 layout_mode = 2
 texture = SubResource("AtlasTexture_xx8rl")

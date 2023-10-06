@@ -3,9 +3,6 @@ extends Control
 @export var request_node: HTTPRequest
 @export var result_node: Label
 
-const HEADERS := ["Content-Type: application/json"]
-const POST := HTTPClient.METHOD_POST
-
 var response := "..."
 
 
@@ -19,10 +16,10 @@ func _process(_delta):
 
 func _on_http_request_completed(_result, response_code, _headers, body):
 	if response_code == 200:
-		response = body.get_string_from_utf8()
+		response = "Success!"
 		result_node.add_theme_color_override("font_color", Color.GREEN)
-	else:
-		response = body.get_string_from_utf8()
+	elif response_code == 408:
+		response = "Timeout!"
 		result_node.add_theme_color_override("font_color", Color.RED)
 
 
@@ -34,7 +31,7 @@ func _on_knight_pressed():
 		var data = ChampionData.get_defaults(ChampionData.KNIGHT)
 		var json = JSON.stringify(data)
 
-		request_node.request(ServerData.URL + "/set-champion", HEADERS, POST, json)
+		request_node.request(ServerData.URL + "/set-champion", ServerData.HEADERS, ServerData.POST, json)
 
 
 # Wizard
@@ -43,7 +40,7 @@ func _on_wizard_pressed():
 		var data = ChampionData.get_defaults(ChampionData.WIZARD)
 		var json = JSON.stringify(data)
 
-		request_node.request(ServerData.URL + "/set-champion", HEADERS, POST, json)
+		request_node.request(ServerData.URL + "/set-champion", ServerData.HEADERS, ServerData.POST, json)
 
 
 # Rogue
@@ -52,7 +49,7 @@ func _on_rogue_pressed():
 		var data = ChampionData.get_defaults(ChampionData.ROGUE)
 		var json = JSON.stringify(data)
 
-		request_node.request(ServerData.URL + "/set-champion", HEADERS, POST, json)
+		request_node.request(ServerData.URL + "/set-champion", ServerData.HEADERS, ServerData.POST, json)
 
 
 # Archer
@@ -61,7 +58,7 @@ func _on_archer_pressed():
 		var data = ChampionData.get_defaults(ChampionData.ARCHER)
 		var json = JSON.stringify(data)
 
-		request_node.request(ServerData.URL + "/set-champion", HEADERS, POST, json)
+		request_node.request(ServerData.URL + "/set-champion", ServerData.HEADERS, ServerData.POST, json)
 
 
 # === Spells ===
@@ -72,7 +69,7 @@ func _on_berserk_pressed():
 		var data = SpellData.get_defaults(SpellData.BERSERK)
 		var json = JSON.stringify(data)
 
-		request_node.request(ServerData.URL + "/set-spell", HEADERS, POST, json)
+		request_node.request(ServerData.URL + "/set-spell", ServerData.HEADERS, ServerData.POST, json)
 
 
 # Fireball
@@ -81,7 +78,7 @@ func _on_fireball_pressed():
 		var data = SpellData.get_defaults(SpellData.FIREBALL)
 		var json = JSON.stringify(data)
 
-		request_node.request(ServerData.URL + "/set-spell", HEADERS, POST, json)
+		request_node.request(ServerData.URL + "/set-spell", ServerData.HEADERS, ServerData.POST, json)
 
 
 # Counter
@@ -90,7 +87,7 @@ func _on_counter_pressed():
 		var data = SpellData.get_defaults(SpellData.COUNTER)
 		var json = JSON.stringify(data)
 
-		request_node.request(ServerData.URL + "/set-spell", HEADERS, POST, json)
+		request_node.request(ServerData.URL + "/set-spell", ServerData.HEADERS, ServerData.POST, json)
 
 
 # Split
@@ -99,7 +96,7 @@ func _on_split_pressed():
 		var data = SpellData.get_defaults(SpellData.SPLIT)
 		var json = JSON.stringify(data)
 
-		request_node.request(ServerData.URL + "/set-spell", HEADERS, POST, json)
+		request_node.request(ServerData.URL + "/set-spell", ServerData.HEADERS, ServerData.POST, json)
 
 
 # === Misc ===

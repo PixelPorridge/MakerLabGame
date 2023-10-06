@@ -27,8 +27,8 @@ func _ready():
 	p1.target = p2
 	p2.target = p1
 	
-	p1.colour = Color(1, 0.302, 0.302)
-	p2.colour = Color(0.302, 0.302, 1)
+	p1.colour = PlayerData.p1_colour
+	p2.colour = PlayerData.p2_colour
 
 	var viewport_size = get_viewport().content_scale_size
 	p1.position = Vector2(150, viewport_size.y * 0.58)
@@ -43,8 +43,24 @@ func _ready():
 
 
 func _physics_process(_delta):
-	p1_health_bar.value = p1.health
-	p2_health_bar.value = p2.health
+	var p1_health = clamp(p1.health, 0, INF)
+	var p2_health = clamp(p2.health, 0, INF)
 	
-	p1_health_label.text = "%s/%s" % [p1.health, p1.max_health]
-	p2_health_label.text = "%s/%s" % [p2.health, p2.max_health]
+	p1_health_bar.value = p1_health
+	p2_health_bar.value = p2_health
+	
+	p1_health_label.text = "%s/%s" % [p1_health, p1.max_health]
+	p2_health_label.text = "%s/%s" % [p2_health, p2.max_health]
+	
+	if p1_health == 0:
+		PlayerData.winner_champion = PlayerData.p2_champion
+		PlayerData.loser_champion = PlayerData.p1_champion
+		PlayerData.winner = 2
+		PlayerData.loser = 1
+		get_tree().change_scene_to_file("res://Scenes/Results/Results.tscn")
+	elif p2_health == 0:
+		PlayerData.winner_champion = PlayerData.p1_champion
+		PlayerData.loser_champion = PlayerData.p2_champion
+		PlayerData.winner = 1
+		PlayerData.loser = 2
+		get_tree().change_scene_to_file("res://Scenes/Results/Results.tscn")

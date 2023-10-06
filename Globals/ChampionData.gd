@@ -12,6 +12,19 @@ const DEXTERITY = "dexterity"
 const VITALITY = "vitality"
 const WISDOM = "wisdom"
 
+const EXP_REQ = {
+	1: 50,
+	2: 100,
+	3: 200,
+	4: 400,
+	5: 800,
+	6: 1600,
+	7: 3200,
+	8: 6400,
+	9: 12800,
+	10: INF,
+}
+
 const KNIGHT = 0
 const WIZARD = 1
 const ROGUE = 2

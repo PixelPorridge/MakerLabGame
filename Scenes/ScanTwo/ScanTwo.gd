@@ -1,6 +1,6 @@
 extends Control
 
-@export var request_node: HTTPRequest
+@onready var request_node := $HTTPRequest
 @export var fight_button: Button
 
 @export var p1_label: Label
@@ -64,11 +64,7 @@ func _process(delta):
 
 
 func _on_menu_pressed():
-	PlayerData.p1_champion = ChampionData.get_defaults()
-	PlayerData.p1_spell = SpellData.get_defaults()
-	PlayerData.p2_champion = ChampionData.get_defaults()
-	PlayerData.p2_spell = SpellData.get_defaults()
-
+	PlayerData.reset()
 	get_tree().change_scene_to_file("res://Scenes/Menu/Menu.tscn")
 
 
@@ -95,21 +91,25 @@ func _on_http_request_completed(_result, response_code, _headers, body):
 				PlayerData.p1_champion = data
 				p1_scan_champion.visible = false
 				p1_champion_overview.data = data
+				p1_champion_overview.render()
 				p1_champion_overview.visible = true
 			P1_SPELL_STAGE:
 				PlayerData.p1_spell = data
 				p1_scan_spell.visible = false
 				p1_spell_overview.data = data
+				p1_spell_overview.render()
 				p1_spell_overview.visible = true
 			P2_CHAMPION_STAGE:
 				PlayerData.p2_champion = data
 				p2_scan_champion.visible = false
 				p2_champion_overview.data = data
+				p2_champion_overview.render()
 				p2_champion_overview.visible = true
 			P2_SPELL_STAGE:
 				PlayerData.p2_spell = data
 				p2_scan_spell.visible = false
 				p2_spell_overview.data = data
+				p2_spell_overview.render()
 				p2_spell_overview.visible = true
 				
 		stage += 1

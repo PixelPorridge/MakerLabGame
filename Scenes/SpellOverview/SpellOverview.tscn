@@ -1,23 +1,44 @@
-[gd_scene load_steps=8 format=3 uid="uid://dxy62j137y3yg"]
+[gd_scene load_steps=13 format=3 uid="uid://dxy62j137y3yg"]
 
 [ext_resource type="Script" path="res://Scenes/SpellOverview/SpellOverview.gd" id="1_6v0pl"]
 [ext_resource type="FontFile" uid="uid://d3r1wnihdieqm" path="res://Fonts/I-pixel-u.ttf" id="2_lnm11"]
 [ext_resource type="Texture2D" uid="uid://ch4urjwfwxwfe" path="res://Sprites/Projectiles.png" id="3_m23bv"]
+[ext_resource type="Shader" path="res://Shaders/Outline.gdshader" id="3_wi76l"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_dj3wa"]
+shader = ExtResource("3_wi76l")
+shader_parameter/line_color = Color(1, 1, 1, 1)
+shader_parameter/line_thickness = 2.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_3erer"]
 atlas = ExtResource("3_m23bv")
 region = Rect2(64, 0, 64, 64)
 filter_clip = true
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ean01"]
+shader = ExtResource("3_wi76l")
+shader_parameter/line_color = Color(1, 1, 1, 1)
+shader_parameter/line_thickness = 2.0
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_7cp7h"]
 atlas = ExtResource("3_m23bv")
 region = Rect2(64, 64, 64, 64)
 filter_clip = true
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_met5v"]
+shader = ExtResource("3_wi76l")
+shader_parameter/line_color = Color(1, 1, 1, 1)
+shader_parameter/line_thickness = 2.0
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_e3k5m"]
 atlas = ExtResource("3_m23bv")
 region = Rect2(64, 128, 64, 64)
 filter_clip = true
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7elwj"]
+shader = ExtResource("3_wi76l")
+shader_parameter/line_color = Color(1, 1, 1, 1)
+shader_parameter/line_thickness = 2.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_iquwx"]
 atlas = ExtResource("3_m23bv")
@@ -59,20 +80,21 @@ text = "Spell"
 horizontal_alignment = 1
 
 [node name="Berserk" type="TextureRect" parent="PanelContainer/CenterContainer/HBoxContainer"]
+material = SubResource("ShaderMaterial_dj3wa")
 layout_mode = 2
 texture = SubResource("AtlasTexture_3erer")
 
 [node name="Fireball" type="TextureRect" parent="PanelContainer/CenterContainer/HBoxContainer"]
-visible = false
+material = SubResource("ShaderMaterial_ean01")
 layout_mode = 2
 texture = SubResource("AtlasTexture_7cp7h")
 
 [node name="Counter" type="TextureRect" parent="PanelContainer/CenterContainer/HBoxContainer"]
-visible = false
+material = SubResource("ShaderMaterial_met5v")
 layout_mode = 2
 texture = SubResource("AtlasTexture_e3k5m")
 
 [node name="Split" type="TextureRect" parent="PanelContainer/CenterContainer/HBoxContainer"]
-visible = false
+material = SubResource("ShaderMaterial_7elwj")
 layout_mode = 2
 texture = SubResource("AtlasTexture_iquwx")

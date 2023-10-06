@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://b23h7wno3hjmv" path="res://Scenes/ChampionOverview/ChampionOverview.tscn" id="5_el8ko"]
 [ext_resource type="PackedScene" uid="uid://dxy62j137y3yg" path="res://Scenes/SpellOverview/SpellOverview.tscn" id="6_t57ku"]
 
-[node name="ScanTwo" type="Control" node_paths=PackedStringArray("request_node", "fight_button", "p1_label", "p2_label", "p1_scan_champion", "p1_scan_spell", "p2_scan_champion", "p2_scan_spell", "p1_champion_overview", "p1_spell_overview", "p2_champion_overview", "p2_spell_overview")]
+[node name="ScanTwo" type="Control" node_paths=PackedStringArray("fight_button", "p1_label", "p2_label", "p1_scan_champion", "p1_scan_spell", "p2_scan_champion", "p2_scan_spell", "p1_champion_overview", "p1_spell_overview", "p2_champion_overview", "p2_spell_overview")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -14,7 +14,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_k5kxq")
-request_node = NodePath("HTTPRequest")
 fight_button = NodePath("MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/Fight")
 p1_label = NodePath("MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/PanelContainer/P1")
 p2_label = NodePath("MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/PanelContainer2/P2")
@@ -67,13 +66,14 @@ size_flags_vertical = 3
 
 [node name="P1" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/PanelContainer"]
 layout_mode = 2
-theme_override_colors/font_color = Color(1, 0.3, 0.3, 1)
+theme_override_colors/font_color = Color(1, 0.301961, 0.301961, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 10
 theme_override_fonts/font = ExtResource("3_84nen")
 theme_override_font_sizes/font_size = 32
 text = "Player 1"
 horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Menu" type="Button" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
@@ -110,6 +110,7 @@ theme_override_fonts/font = ExtResource("3_84nen")
 theme_override_font_sizes/font_size = 32
 text = "Player 2"
 horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -145,7 +146,7 @@ theme_override_constants/outline_size = 10
 theme_override_constants/line_spacing = 0
 theme_override_fonts/font = ExtResource("3_84nen")
 theme_override_font_sizes/font_size = 48
-text = "Scan
+text = "Summon
 Champion!"
 horizontal_alignment = 1
 
@@ -174,7 +175,7 @@ theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 10
 theme_override_fonts/font = ExtResource("3_84nen")
 theme_override_font_sizes/font_size = 32
-text = "Scan Spell!"
+text = "Cast Spell!"
 horizontal_alignment = 1
 
 [node name="P1SpellOverview" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer/PanelContainer2/MarginContainer" instance=ExtResource("6_t57ku")]
@@ -209,7 +210,7 @@ theme_override_constants/outline_size = 10
 theme_override_constants/line_spacing = 0
 theme_override_fonts/font = ExtResource("3_84nen")
 theme_override_font_sizes/font_size = 48
-text = "Scan
+text = "Summon
 Champion!"
 horizontal_alignment = 1
 
@@ -238,7 +239,7 @@ theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 10
 theme_override_fonts/font = ExtResource("3_84nen")
 theme_override_font_sizes/font_size = 32
-text = "Scan Spell!"
+text = "Casrt Spell!"
 horizontal_alignment = 1
 
 [node name="P2SpellOverview" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer2/PanelContainer2/MarginContainer" instance=ExtResource("6_t57ku")]
