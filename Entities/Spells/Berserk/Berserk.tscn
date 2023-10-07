@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://bwt5qddmy2enc"]
+
+[ext_resource type="PackedScene" uid="uid://b6ccn01yly30i" path="res://Entities/Spells/Spell.tscn" id="1_amhft"]
+[ext_resource type="Script" path="res://Entities/Spells/Berserk/Berserk.gd" id="2_qoiwu"]
+
+[node name="Berserk" instance=ExtResource("1_amhft")]
+script = ExtResource("2_qoiwu")
+
+[node name="Duration" type="Timer" parent="." index="1"]
+wait_time = 3.0
+one_shot = true
+
+[connection signal="timeout" from="Duration" to="." method="_on_duration_timeout"]

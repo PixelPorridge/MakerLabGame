@@ -1,0 +1,29 @@
+[gd_scene load_steps=7 format=3 uid="uid://di810xcp4wxfh"]
+
+[ext_resource type="PackedScene" uid="uid://njev6cpapg64" path="res://Entities/Projectiles/Projectile.tscn" id="1_ul6g5"]
+[ext_resource type="Script" path="res://Entities/Projectiles/FireballProjectile/FireballProjectile.gd" id="2_ggk0c"]
+[ext_resource type="Texture2D" uid="uid://ch4urjwfwxwfe" path="res://Sprites/Projectiles.png" id="3_kph3f"]
+[ext_resource type="Shader" path="res://Shaders/Outline.gdshader" id="3_pfccc"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_051kr"]
+shader = ExtResource("3_pfccc")
+shader_parameter/line_color = Color(1, 1, 1, 1)
+shader_parameter/line_thickness = 2.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6nadg"]
+size = Vector2(24, 24)
+
+[node name="FireballProjectile" node_paths=PackedStringArray("sprite") instance=ExtResource("1_ul6g5")]
+script = ExtResource("2_ggk0c")
+sprite = NodePath("Sprite2D")
+
+[node name="Sprite2D" type="Sprite2D" parent="." index="1"]
+material = SubResource("ShaderMaterial_051kr")
+position = Vector2(-6, 0)
+rotation = 0.785398
+texture = ExtResource("3_kph3f")
+region_enabled = true
+region_rect = Rect2(64, 64, 64, 64)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="2"]
+shape = SubResource("RectangleShape2D_6nadg")

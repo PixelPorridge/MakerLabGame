@@ -1,0 +1,7 @@
+[gd_scene load_steps=3 format=3 uid="uid://gl8m41ghhnf5"]
+
+[ext_resource type="PackedScene" uid="uid://b6ccn01yly30i" path="res://Entities/Spells/Spell.tscn" id="1_o3t27"]
+[ext_resource type="Script" path="res://Entities/Spells/Fireball/Fireball.gd" id="2_jjn3p"]
+
+[node name="Fireball" instance=ExtResource("1_o3t27")]
+script = ExtResource("2_jjn3p")

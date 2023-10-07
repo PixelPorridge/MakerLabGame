@@ -14,7 +14,7 @@ func _process(_delta):
 	result_node.text = response
 
 
-func _on_http_request_completed(_result, response_code, _headers, body):
+func _on_http_request_completed(_result, response_code, _headers, _body):
 	if response_code == 200:
 		response = "Success!"
 		result_node.add_theme_color_override("font_color", Color.GREEN)

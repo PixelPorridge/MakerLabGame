@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://dx34spl0mgs7w"]
+[gd_scene load_steps=14 format=3 uid="uid://dx34spl0mgs7w"]
 
 [ext_resource type="Script" path="res://Scenes/Battle/Battle.gd" id="1_gjpf1"]
 [ext_resource type="PackedScene" uid="uid://byofvosd2i7vp" path="res://Backgrounds/Grass.tscn" id="2_mdr12"]
 [ext_resource type="FontFile" uid="uid://d3r1wnihdieqm" path="res://Fonts/I-pixel-u.ttf" id="3_o68ru"]
+[ext_resource type="Texture2D" uid="uid://ch4urjwfwxwfe" path="res://Sprites/Projectiles.png" id="4_xskpu"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_u7fpa"]
 size = Vector2(752, 16)
@@ -16,13 +17,36 @@ size = Vector2(768, 16)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kmts5"]
 size = Vector2(16, 336)
 
-[node name="Battle" type="Node2D" node_paths=PackedStringArray("p1_health_bar", "p2_health_bar", "p1_health_label", "p2_health_label")]
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_ennjl"]
+load_path = "res://.godot/imported/Projectiles.png-a460b3308858e7ad21b3727966f952d3.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_buma5"]
+atlas = SubResource("CompressedTexture2D_ennjl")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g7jnp"]
+atlas = ExtResource("4_xskpu")
+region = Rect2(64, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d2o6a"]
+atlas = ExtResource("4_xskpu")
+region = Rect2(64, 128, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oqhc3"]
+atlas = ExtResource("4_xskpu")
+region = Rect2(64, 192, 64, 64)
+
+[node name="Battle" type="Node2D" node_paths=PackedStringArray("p1_health_bar", "p2_health_bar", "p1_health_label", "p2_health_label", "p1_spell_cooldown", "p2_spell_cooldown", "p1_spell_textures", "p2_spell_textures")]
 y_sort_enabled = true
 script = ExtResource("1_gjpf1")
-p1_health_bar = NodePath("CanvasLayer/HUD/MarginContainer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/P1Health")
-p2_health_bar = NodePath("CanvasLayer/HUD/MarginContainer/HBoxContainer/PanelContainer2/MarginContainer/VBoxContainer/P2Health")
-p1_health_label = NodePath("CanvasLayer/HUD/MarginContainer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/P1Health/P1HealthLabel")
-p2_health_label = NodePath("CanvasLayer/HUD/MarginContainer/HBoxContainer/PanelContainer2/MarginContainer/VBoxContainer/P2Health/P2HealthLabel")
+p1_health_bar = NodePath("CanvasLayer/HUD/MarginContainer/HBoxContainer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/P1Health")
+p2_health_bar = NodePath("CanvasLayer/HUD/MarginContainer/HBoxContainer/HBoxContainer2/PanelContainer2/MarginContainer/VBoxContainer/P2Health")
+p1_health_label = NodePath("CanvasLayer/HUD/MarginContainer/HBoxContainer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/P1Health/P1HealthLabel")
+p2_health_label = NodePath("CanvasLayer/HUD/MarginContainer/HBoxContainer/HBoxContainer2/PanelContainer2/MarginContainer/VBoxContainer/P2Health/P2HealthLabel")
+p1_spell_cooldown = NodePath("CanvasLayer/HUD/MarginContainer/HBoxContainer/HBoxContainer/MarginContainer/PanelContainer2/MarginContainer/P1SpellCooldown")
+p2_spell_cooldown = NodePath("CanvasLayer/HUD/MarginContainer/HBoxContainer/HBoxContainer2/MarginContainer2/PanelContainer2/MarginContainer/P2SpellCooldown")
+p1_spell_textures = [NodePath("CanvasLayer/HUD/MarginContainer/HBoxContainer/HBoxContainer/MarginContainer/PanelContainer2/MarginContainer/Berserk"), NodePath("CanvasLayer/HUD/MarginContainer/HBoxContainer/HBoxContainer/MarginContainer/PanelContainer2/MarginContainer/Fireball"), NodePath("CanvasLayer/HUD/MarginContainer/HBoxContainer/HBoxContainer/MarginContainer/PanelContainer2/MarginContainer/Counter"), NodePath("CanvasLayer/HUD/MarginContainer/HBoxContainer/HBoxContainer/MarginContainer/PanelContainer2/MarginContainer/Split")]
+p2_spell_textures = [NodePath("CanvasLayer/HUD/MarginContainer/HBoxContainer/HBoxContainer2/MarginContainer2/PanelContainer2/MarginContainer/Berserk"), NodePath("CanvasLayer/HUD/MarginContainer/HBoxContainer/HBoxContainer2/MarginContainer2/PanelContainer2/MarginContainer/Fireball"), NodePath("CanvasLayer/HUD/MarginContainer/HBoxContainer/HBoxContainer2/MarginContainer2/PanelContainer2/MarginContainer/Counter"), NodePath("CanvasLayer/HUD/MarginContainer/HBoxContainer/HBoxContainer2/MarginContainer2/PanelContainer2/MarginContainer/Split")]
 
 [node name="Grass" parent="." instance=ExtResource("2_mdr12")]
 
@@ -71,23 +95,28 @@ theme_override_constants/margin_bottom = 380
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/HUD/MarginContainer"]
 layout_mode = 2
-theme_override_constants/separation = 196
+theme_override_constants/separation = 128
 
-[node name="PanelContainer" type="PanelContainer" parent="CanvasLayer/HUD/MarginContainer/HBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/HUD/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 8
+
+[node name="PanelContainer" type="PanelContainer" parent="CanvasLayer/HUD/MarginContainer/HBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/HUD/MarginContainer/HBoxContainer/PanelContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/HUD/MarginContainer/HBoxContainer/HBoxContainer/PanelContainer"]
 layout_mode = 2
 theme_override_constants/margin_left = 8
 theme_override_constants/margin_top = 8
 theme_override_constants/margin_right = 8
 theme_override_constants/margin_bottom = 8
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/HUD/MarginContainer/HBoxContainer/PanelContainer/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/HUD/MarginContainer/HBoxContainer/HBoxContainer/PanelContainer/MarginContainer"]
 layout_mode = 2
 
-[node name="P1Health" type="ProgressBar" parent="CanvasLayer/HUD/MarginContainer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="P1Health" type="ProgressBar" parent="CanvasLayer/HUD/MarginContainer/HBoxContainer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
@@ -98,7 +127,7 @@ step = 1.0
 value = 100.0
 show_percentage = false
 
-[node name="P1HealthLabel" type="Label" parent="CanvasLayer/HUD/MarginContainer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/P1Health"]
+[node name="P1HealthLabel" type="Label" parent="CanvasLayer/HUD/MarginContainer/HBoxContainer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/P1Health"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -113,7 +142,7 @@ text = "50/50"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Label" type="Label" parent="CanvasLayer/HUD/MarginContainer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="Label" type="Label" parent="CanvasLayer/HUD/MarginContainer/HBoxContainer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 6
 theme_override_colors/font_color = Color(1, 0.3, 0.3, 1)
@@ -125,21 +154,112 @@ text = "Player 1"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="PanelContainer2" type="PanelContainer" parent="CanvasLayer/HUD/MarginContainer/HBoxContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/HUD/MarginContainer/HBoxContainer/HBoxContainer"]
 layout_mode = 2
-size_flags_horizontal = 3
+theme_override_constants/margin_bottom = 16
 
-[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/HUD/MarginContainer/HBoxContainer/PanelContainer2"]
+[node name="PanelContainer2" type="PanelContainer" parent="CanvasLayer/HUD/MarginContainer/HBoxContainer/HBoxContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/HUD/MarginContainer/HBoxContainer/HBoxContainer/MarginContainer/PanelContainer2"]
 layout_mode = 2
 theme_override_constants/margin_left = 8
 theme_override_constants/margin_top = 8
 theme_override_constants/margin_right = 8
 theme_override_constants/margin_bottom = 8
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/HUD/MarginContainer/HBoxContainer/PanelContainer2/MarginContainer"]
+[node name="P1SpellCooldown" type="ProgressBar" parent="CanvasLayer/HUD/MarginContainer/HBoxContainer/HBoxContainer/MarginContainer/PanelContainer2/MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 1
+fill_mode = 3
+show_percentage = false
+
+[node name="Berserk" type="TextureRect" parent="CanvasLayer/HUD/MarginContainer/HBoxContainer/HBoxContainer/MarginContainer/PanelContainer2/MarginContainer"]
+visible = false
+layout_mode = 2
+texture = SubResource("AtlasTexture_buma5")
+expand_mode = 3
+
+[node name="Fireball" type="TextureRect" parent="CanvasLayer/HUD/MarginContainer/HBoxContainer/HBoxContainer/MarginContainer/PanelContainer2/MarginContainer"]
+visible = false
+layout_mode = 2
+texture = SubResource("AtlasTexture_g7jnp")
+expand_mode = 3
+
+[node name="Counter" type="TextureRect" parent="CanvasLayer/HUD/MarginContainer/HBoxContainer/HBoxContainer/MarginContainer/PanelContainer2/MarginContainer"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_d2o6a")
+expand_mode = 3
+
+[node name="Split" type="TextureRect" parent="CanvasLayer/HUD/MarginContainer/HBoxContainer/HBoxContainer/MarginContainer/PanelContainer2/MarginContainer"]
+visible = false
+layout_mode = 2
+texture = SubResource("AtlasTexture_oqhc3")
+expand_mode = 3
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="CanvasLayer/HUD/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 8
+
+[node name="MarginContainer2" type="MarginContainer" parent="CanvasLayer/HUD/MarginContainer/HBoxContainer/HBoxContainer2"]
+layout_mode = 2
+theme_override_constants/margin_bottom = 16
+
+[node name="PanelContainer2" type="PanelContainer" parent="CanvasLayer/HUD/MarginContainer/HBoxContainer/HBoxContainer2/MarginContainer2"]
 layout_mode = 2
 
-[node name="P2Health" type="ProgressBar" parent="CanvasLayer/HUD/MarginContainer/HBoxContainer/PanelContainer2/MarginContainer/VBoxContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/HUD/MarginContainer/HBoxContainer/HBoxContainer2/MarginContainer2/PanelContainer2"]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="P2SpellCooldown" type="ProgressBar" parent="CanvasLayer/HUD/MarginContainer/HBoxContainer/HBoxContainer2/MarginContainer2/PanelContainer2/MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 1
+fill_mode = 3
+show_percentage = false
+
+[node name="Berserk" type="TextureRect" parent="CanvasLayer/HUD/MarginContainer/HBoxContainer/HBoxContainer2/MarginContainer2/PanelContainer2/MarginContainer"]
+visible = false
+layout_mode = 2
+texture = SubResource("AtlasTexture_buma5")
+expand_mode = 3
+
+[node name="Fireball" type="TextureRect" parent="CanvasLayer/HUD/MarginContainer/HBoxContainer/HBoxContainer2/MarginContainer2/PanelContainer2/MarginContainer"]
+visible = false
+layout_mode = 2
+texture = SubResource("AtlasTexture_g7jnp")
+expand_mode = 3
+
+[node name="Counter" type="TextureRect" parent="CanvasLayer/HUD/MarginContainer/HBoxContainer/HBoxContainer2/MarginContainer2/PanelContainer2/MarginContainer"]
+visible = false
+layout_mode = 2
+texture = SubResource("AtlasTexture_d2o6a")
+expand_mode = 3
+
+[node name="Split" type="TextureRect" parent="CanvasLayer/HUD/MarginContainer/HBoxContainer/HBoxContainer2/MarginContainer2/PanelContainer2/MarginContainer"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_oqhc3")
+expand_mode = 3
+
+[node name="PanelContainer2" type="PanelContainer" parent="CanvasLayer/HUD/MarginContainer/HBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/HUD/MarginContainer/HBoxContainer/HBoxContainer2/PanelContainer2"]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/HUD/MarginContainer/HBoxContainer/HBoxContainer2/PanelContainer2/MarginContainer"]
+layout_mode = 2
+
+[node name="P2Health" type="ProgressBar" parent="CanvasLayer/HUD/MarginContainer/HBoxContainer/HBoxContainer2/PanelContainer2/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
@@ -151,7 +271,7 @@ value = 100.0
 fill_mode = 1
 show_percentage = false
 
-[node name="P2HealthLabel" type="Label" parent="CanvasLayer/HUD/MarginContainer/HBoxContainer/PanelContainer2/MarginContainer/VBoxContainer/P2Health"]
+[node name="P2HealthLabel" type="Label" parent="CanvasLayer/HUD/MarginContainer/HBoxContainer/HBoxContainer2/PanelContainer2/MarginContainer/VBoxContainer/P2Health"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -166,7 +286,7 @@ text = "50/50"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Label" type="Label" parent="CanvasLayer/HUD/MarginContainer/HBoxContainer/PanelContainer2/MarginContainer/VBoxContainer"]
+[node name="Label" type="Label" parent="CanvasLayer/HUD/MarginContainer/HBoxContainer/HBoxContainer2/PanelContainer2/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 6
 theme_override_colors/font_color = Color(0.3, 0.3, 1, 1)

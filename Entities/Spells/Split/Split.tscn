@@ -1,0 +1,7 @@
+[gd_scene load_steps=3 format=3 uid="uid://xhss8csqsdtl"]
+
+[ext_resource type="PackedScene" uid="uid://b6ccn01yly30i" path="res://Entities/Spells/Spell.tscn" id="1_ua8ge"]
+[ext_resource type="Script" path="res://Entities/Spells/Split/Split.gd" id="2_p4buy"]
+
+[node name="Split" instance=ExtResource("1_ua8ge")]
+script = ExtResource("2_p4buy")

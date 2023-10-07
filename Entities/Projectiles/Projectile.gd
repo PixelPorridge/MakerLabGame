@@ -14,6 +14,7 @@ var direction := Vector2.ZERO
 
 func _ready():
 	sprite.material.set_shader_parameter("line_color", colour)
+	sprite.material = sprite.material.duplicate()
 
 
 func _physics_process(delta):
@@ -32,7 +33,11 @@ func destroy():
 
 
 func _on_body_entered(champion: Champion):
-	champion.health -= damage / champion.defence
+	var actual_damage = damage - (champion.defence * 2)
+	if actual_damage <= 0:
+		actual_damage = 1
+		
+	champion.health -= actual_damage
 	
 	var hit_marker_inst = hit_marker.instantiate()
 	hit_marker_inst.position = position
@@ -45,5 +50,5 @@ func _on_area_entered(_area: Area2D):
 	destroy()
 
 
-func _on_timeout_timeout() -> void:
+func _on_timeout_timeout():
 	destroy()
