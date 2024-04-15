@@ -1,8 +1,15 @@
 extends Control
 
+@export var title: TextureRect
 
-func _on_train_pressed():
-	pass # Replace with function body.
+var time: float = 0.0
+
+
+func _physics_process(delta):
+	time += delta
+
+	var title_scale = cos(time * 10) * 0.05 + 1
+	title.scale = Vector2(title_scale, title_scale)
 
 
 func _on_battle_pressed():
